@@ -135,43 +135,44 @@
             100% { transform: scale(1); }
         }
 
-        .loading-overlay {
-            position: fixed;
-            inset: 0;
-            background: var(--bg);
-            z-index: 100;
+        /* Loading placeholders for images */
+        .image-loading {
+            background: #fce4ec;
+            min-height: 250px;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.8s ease;
+            position: relative;
+        }
+
+        .image-loading::after {
+            content: "✏️";
+            font-size: 2rem;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center py-10 md:py-16 px-6">
 
-    <!-- Loading Screen -->
-    <div id="loader" class="loading-overlay">
-        <div class="text-5xl animate-bounce">💖</div>
-        <p class="mt-4 cursive text-pink-600 text-2xl">Drawing your world, Tresor...</p>
-    </div>
-
     <div id="heart-container"></div>
 
-    <!-- Header Section -->
     <header class="text-center mb-12 relative z-10 w-full">
         <h1 class="text-5xl md:text-7xl text-pink-600 cursive mb-4">Hey Ihogoza Keith,</h1>
         <p class="text-gray-500 text-lg md:text-xl font-light">Tresor made something special just for you...</p>
     </header>
 
-    <!-- Interactive Envelope -->
     <section class="mb-32 md:mb-40 relative z-10 w-full" id="letter-section">
         <div class="envelope-wrapper" onclick="toggleLetter()">
             <div id="envelope" class="envelope">
                 <div class="letter shadow-inner">
                     <p class="text-pink-500 font-bold mb-3 text-lg cursive">My Dearest Keith,</p>
                     <p class="text-gray-600 text-sm md:text-base leading-relaxed italic">
-                        "Every time I see you, whether in person or in a drawing, I'm reminded of why I fell for you. You are my masterpiece."
+                        "They say a picture is worth a thousand words, but these sketches are only worth one: LOVE. I fall for you more every single day."
                     </p>
                     <div class="mt-6 text-pink-400 font-bold cursive text-xl">❤ Your Tresor</div>
                 </div>
@@ -180,26 +181,27 @@
         </div>
     </section>
 
-    <!-- Sketch Gallery -->
     <section class="max-w-6xl w-full mb-24 relative z-10">
-        <h2 class="text-3xl md:text-4xl text-center cursive text-pink-600 mb-12">Hand-Drawn Perfection</h2>
+        <h2 class="text-3xl md:text-4xl text-center cursive text-pink-600 mb-12">Hand-Drawn Beauty</h2>
         <div class="flex flex-wrap justify-center gap-10 px-4">
-            <!-- Sketch 1 -->
             <div class="polaroid rotate-3">
-                <img id="sketch-1" class="w-full h-auto grayscale" src= "kei.png">
+                <div class="image-loading" id="loader-1">
+                    <img id="sketch-1" class="w-full h-auto grayscale hidden" src="kei.png">
+                </div>
             </div>
-            <!-- Sketch 2 (Pink tint) -->
-            <div class="polaroid -rotate-2" style="background: #fff0f3;">
-                <img id="sketch-2" class="w-full h-auto" src="lynn.png">
+            <div class="polaroid -rotate-2">
+                <div class="image-loading" id="loader-2">
+                    <img id="sketch-2" class="w-full h-auto grayscale hidden" src="lynn.png">
+                </div>
             </div>
-            <!-- Sketch 3 -->
             <div class="polaroid rotate-1">
-                <img id="sketch-3" class="w-full h-auto grayscale" src="tre.png">
+                <div class="image-loading" id="loader-3">
+                    <img id="sketch-3" class="w-full h-auto hidden" alt="Keith Color Pencil Drawing" src="tre.png">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Reasons Grid -->
     <section class="max-w-4xl w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-24 relative z-10">
         <div class="glass-card p-8 text-center">
             <div class="text-4xl mb-4">✨</div>
@@ -218,13 +220,11 @@
         </div>
     </section>
 
-    <!-- Final CTA -->
     <section class="text-center pb-24 relative z-10 w-full px-4">
         <h2 class="text-4xl md:text-5xl cursive text-pink-600 mb-10">Will you be my forever?</h2>
         <button onclick="sayYes()" class="bg-pink-500 text-white px-20 py-5 rounded-full font-bold heart-btn shadow-xl text-2xl tracking-wide transition-all hover:bg-pink-600">Yes, Always!</button>
     </section>
 
-    <!-- Success Modal -->
     <div id="success-modal" class="fixed inset-0 bg-pink-900/40 backdrop-blur-md hidden z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-[2rem] p-10 max-w-sm w-full text-center shadow-2xl border-4 border-pink-100">
             <div class="text-7xl mb-6">💍</div>
@@ -239,10 +239,9 @@
 
         async function loadImages() {
             try {
-                // Using the specific sketch styles from the user-provided image
-                const prompt1 = "A detailed graphite pencil sketch of a beautiful African woman leaning her chin on her hand, profile view, short natural hair, soft realistic shading, hand-drawn art style.";
-                const prompt2 = "A romantic pencil drawing on pink tinted paper, portrait of a woman resting head on hand, looking thoughtfully, artistic cross-hatching, fine line pencil work.";
-                const prompt3 = "A charcoal and pencil sketch portrait of a beautiful woman with a stylish short haircut, side profile, resting chin on hand, expressive and romantic hand-drawn style.";
+                const prompt1 = "A high-quality charcoal portrait of the young woman from image_5.png, leaning her chin on her hand, side profile view, soft charcoal shading, on textured paper, hand-drawn sketch, artistic.";
+                const prompt2 = "A detailed graphite pencil sketch of the young woman from image_5.png, side profile view, chin resting on her hand, accurate likeness of her short hair and earrings, fine line art cross-hatching.";
+                const prompt3 = "A realistic colored pencil drawing of the young woman from image_5.png, capturing her pink top and bracelets, leaning chin on hand, thoughtful expression, romantic hand-drawn style.";
 
                 const results = await Promise.all([
                     fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`, {
@@ -259,18 +258,27 @@
                     }).then(res => res.json())
                 ]);
 
-                if (results[0].predictions?.[0]) document.getElementById('sketch-1').src = `data:image/png;base64,${results[0].predictions[0].bytesBase64Encoded}`;
-                if (results[1].predictions?.[0]) document.getElementById('sketch-2').src = `data:image/png;base64,${results[1].predictions[0].bytesBase64Encoded}`;
-                if (results[2].predictions?.[0]) document.getElementById('sketch-3').src = `data:image/png;base64,${results[2].predictions[0].bytesBase64Encoded}`;
-
-                // Hide loader
-                const loader = document.getElementById('loader');
-                loader.style.opacity = '0';
-                setTimeout(() => loader.style.display = 'none', 800);
+                if (results[0].predictions?.[0]) {
+                    const img = document.getElementById('sketch-1');
+                    img.src = `data:image/png;base64,${results[0].predictions[0].bytesBase64Encoded}`;
+                    img.classList.remove('hidden');
+                    document.getElementById('loader-1').classList.remove('image-loading');
+                }
+                if (results[1].predictions?.[0]) {
+                    const img = document.getElementById('sketch-2');
+                    img.src = `data:image/png;base64,${results[1].predictions[0].bytesBase64Encoded}`;
+                    img.classList.remove('hidden');
+                    document.getElementById('loader-2').classList.remove('image-loading');
+                }
+                if (results[2].predictions?.[0]) {
+                    const img = document.getElementById('sketch-3');
+                    img.src = `data:image/png;base64,${results[2].predictions[0].bytesBase64Encoded}`;
+                    img.classList.remove('hidden');
+                    document.getElementById('loader-3').classList.remove('image-loading');
+                }
 
             } catch (err) {
                 console.error("Sketch generation failed", err);
-                document.getElementById('loader').style.display = 'none';
             }
         }
 
