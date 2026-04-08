@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A Special Surprise for Ihogoza Keith</title>
+    <!-- Web Icon (Favicon) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
@@ -22,6 +24,20 @@
 
         .cursive {
             font-family: 'Dancing Script', cursive;
+        }
+
+        /* Brand Icon Styling */
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 20px rgba(255, 117, 140, 0.3);
+            margin-bottom: 1.5rem;
+            border: 2px solid #fff;
         }
 
         /* Floating Hearts Animation */
@@ -115,16 +131,25 @@
 
         .polaroid {
             background: white;
-            padding: 10px 10px 40px 10px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 12px 12px 48px 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             transition: all 0.4s ease;
-            max-width: 250px;
+            max-width: 280px;
             width: 100%;
+        }
+
+        .polaroid img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 2px;
+            background: #eee;
         }
 
         .polaroid:hover {
             transform: scale(1.05) rotate(0deg) !important;
             z-index: 20;
+            box-shadow: 0 15px 35px rgba(255, 117, 140, 0.2);
         }
 
         .heart-btn { animation: pulse 1.5s infinite; }
@@ -134,34 +159,16 @@
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
-
-        /* Loading placeholders for images */
-        .image-loading {
-            background: #fce4ec;
-            min-height: 250px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        .image-loading::after {
-            content: "✏️";
-            font-size: 2rem;
-            animation: bounce 1s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center py-10 md:py-16 px-6">
 
     <div id="heart-container"></div>
 
-    <header class="text-center mb-12 relative z-10 w-full">
+    <header class="flex flex-col items-center text-center mb-12 relative z-10 w-full">
+        <div class="app-icon animate-bounce">
+            <span class="text-3xl">💖</span>
+        </div>
         <h1 class="text-5xl md:text-7xl text-pink-600 cursive mb-4">Hey Ihogoza Keith,</h1>
         <p class="text-gray-500 text-lg md:text-xl font-light">Tresor made something special just for you...</p>
     </header>
@@ -172,7 +179,7 @@
                 <div class="letter shadow-inner">
                     <p class="text-pink-500 font-bold mb-3 text-lg cursive">My Dearest Keith,</p>
                     <p class="text-gray-600 text-sm md:text-base leading-relaxed italic">
-                        "They say a picture is worth a thousand words, but these sketches are only worth one: LOVE. I fall for you more every single day."
+                        "Every moment with you is a memory I treasure. You are my greatest adventure and my favorite person."
                     </p>
                     <div class="mt-6 text-pink-400 font-bold cursive text-xl">❤ Your Tresor</div>
                 </div>
@@ -182,22 +189,17 @@
     </section>
 
     <section class="max-w-6xl w-full mb-24 relative z-10">
-        <h2 class="text-3xl md:text-4xl text-center cursive text-pink-600 mb-12">Hand-Drawn Beauty</h2>
+        <h2 class="text-3xl md:text-4xl text-center cursive text-pink-600 mb-12">Captured Moments</h2>
         <div class="flex flex-wrap justify-center gap-10 px-4">
+            <!-- You can replace the 'src' attributes with your image filenames -->
             <div class="polaroid rotate-3">
-                <div class="image-loading" id="loader-1">
-                    <img id="sketch-1" class="w-full h-auto grayscale hidden" src="kei.png">
-                </div>
+                <img src="lynn.png" alt="Memory 1" onerror="this.src='https://via.placeholder.com/250x250?text=Insert+Photo+1'">
             </div>
             <div class="polaroid -rotate-2">
-                <div class="image-loading" id="loader-2">
-                    <img id="sketch-2" class="w-full h-auto grayscale hidden" src="lynn.png">
-                </div>
+                <img src="tre.png" alt="Memory 2" onerror="this.src='https://via.placeholder.com/250x250?text=Insert+Photo+2'">
             </div>
             <div class="polaroid rotate-1">
-                <div class="image-loading" id="loader-3">
-                    <img id="sketch-3" class="w-full h-auto hidden" alt="Keith Color Pencil Drawing" src="tre.png">
-                </div>
+                <img src="kei.png" alt="Memory 3" onerror="this.src='https://via.placeholder.com/250x250?text=Insert+Photo+3'">
             </div>
         </div>
     </section>
@@ -235,53 +237,6 @@
     </div>
 
     <script>
-        const apiKey = ""; 
-
-        async function loadImages() {
-            try {
-                const prompt1 = "A high-quality charcoal portrait of the young woman from image_5.png, leaning her chin on her hand, side profile view, soft charcoal shading, on textured paper, hand-drawn sketch, artistic.";
-                const prompt2 = "A detailed graphite pencil sketch of the young woman from image_5.png, side profile view, chin resting on her hand, accurate likeness of her short hair and earrings, fine line art cross-hatching.";
-                const prompt3 = "A realistic colored pencil drawing of the young woman from image_5.png, capturing her pink top and bracelets, leaning chin on hand, thoughtful expression, romantic hand-drawn style.";
-
-                const results = await Promise.all([
-                    fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`, {
-                        method: 'POST',
-                        body: JSON.stringify({ instances: { prompt: prompt1 }, parameters: { sampleCount: 1 } })
-                    }).then(res => res.json()),
-                    fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`, {
-                        method: 'POST',
-                        body: JSON.stringify({ instances: { prompt: prompt2 }, parameters: { sampleCount: 1 } })
-                    }).then(res => res.json()),
-                    fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`, {
-                        method: 'POST',
-                        body: JSON.stringify({ instances: { prompt: prompt3 }, parameters: { sampleCount: 1 } })
-                    }).then(res => res.json())
-                ]);
-
-                if (results[0].predictions?.[0]) {
-                    const img = document.getElementById('sketch-1');
-                    img.src = `data:image/png;base64,${results[0].predictions[0].bytesBase64Encoded}`;
-                    img.classList.remove('hidden');
-                    document.getElementById('loader-1').classList.remove('image-loading');
-                }
-                if (results[1].predictions?.[0]) {
-                    const img = document.getElementById('sketch-2');
-                    img.src = `data:image/png;base64,${results[1].predictions[0].bytesBase64Encoded}`;
-                    img.classList.remove('hidden');
-                    document.getElementById('loader-2').classList.remove('image-loading');
-                }
-                if (results[2].predictions?.[0]) {
-                    const img = document.getElementById('sketch-3');
-                    img.src = `data:image/png;base64,${results[2].predictions[0].bytesBase64Encoded}`;
-                    img.classList.remove('hidden');
-                    document.getElementById('loader-3').classList.remove('image-loading');
-                }
-
-            } catch (err) {
-                console.error("Sketch generation failed", err);
-            }
-        }
-
         function createHearts() {
             const container = document.getElementById('heart-container');
             const heartIcons = ['❤', '💖', '💕', '💗', '🌸'];
@@ -311,7 +266,6 @@
 
         window.onload = () => {
             createHearts();
-            loadImages();
         };
     </script>
 </body>
