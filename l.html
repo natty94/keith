@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Surprise for Ihogoza Keith</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff758c;
+            --secondary: #ff7eb3;
+            --bg: #fff5f7;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--bg);
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        .cursive {
+            font-family: 'Dancing Script', cursive;
+        }
+
+        /* Floating Hearts Animation */
+        .heart {
+            position: fixed;
+            color: var(--primary);
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            z-index: 0;
+            animation: float 6s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* Envelope Animation */
+        .envelope-wrapper {
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto;
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: #f19fb1;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 15px 35px rgba(255, 117, 140, 0.2);
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-left: 160px solid transparent;
+            border-right: 160px solid transparent;
+            border-top: 110px solid #f9b4c4;
+            transform-origin: top;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 3;
+        }
+
+        @media (max-width: 380px) {
+             .envelope::before { border-left-width: 150px; border-right-width: 150px; }
+        }
+
+        .envelope.open::before {
+            transform: rotateX(180deg);
+            z-index: 1;
+        }
+
+        .letter {
+            position: absolute;
+            bottom: 5px;
+            left: 5%;
+            width: 90%;
+            height: 180px;
+            background: white;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 25px 20px;
+            z-index: 2;
+            overflow: hidden;
+            text-align: center;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .envelope.open .letter {
+            transform: translateY(-110px);
+            height: 260px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 24px;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 10px 10px 40px 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            max-width: 250px;
+            width: 100%;
+        }
+
+        .polaroid:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            z-index: 20;
+        }
+
+        .heart-btn { animation: pulse 1.5s infinite; }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: var(--bg);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center py-10 md:py-16 px-6">
+
+    <!-- Loading Screen -->
+    <div id="loader" class="loading-overlay">
+        <div class="text-5xl animate-bounce">💖</div>
+        <p class="mt-4 cursive text-pink-600 text-2xl">Drawing your world, Tresor...</p>
+    </div>
+
+    <div id="heart-container"></div>
+
+    <!-- Header Section -->
+    <header class="text-center mb-12 relative z-10 w-full">
+        <h1 class="text-5xl md:text-7xl text-pink-600 cursive mb-4">Hey Ihogoza Keith,</h1>
+        <p class="text-gray-500 text-lg md:text-xl font-light">Tresor made something special just for you...</p>
+    </header>
+
+    <!-- Interactive Envelope -->
+    <section class="mb-32 md:mb-40 relative z-10 w-full" id="letter-section">
+        <div class="envelope-wrapper" onclick="toggleLetter()">
+            <div id="envelope" class="envelope">
+                <div class="letter shadow-inner">
+                    <p class="text-pink-500 font-bold mb-3 text-lg cursive">My Dearest Keith,</p>
+                    <p class="text-gray-600 text-sm md:text-base leading-relaxed italic">
+                        "Every time I see you, whether in person or in a drawing, I'm reminded of why I fell for you. You are my masterpiece."
+                    </p>
+                    <div class="mt-6 text-pink-400 font-bold cursive text-xl">❤ Your Tresor</div>
+                </div>
+            </div>
+            <p class="text-center mt-6 text-pink-400 animate-pulse font-medium">Tap to open the letter</p>
+        </div>
+    </section>
+
+    <!-- Sketch Gallery -->
+    <section class="max-w-6xl w-full mb-24 relative z-10">
+        <h2 class="text-3xl md:text-4xl text-center cursive text-pink-600 mb-12">Hand-Drawn Perfection</h2>
+        <div class="flex flex-wrap justify-center gap-10 px-4">
+            <!-- Sketch 1 -->
+            <div class="polaroid rotate-3">
+                <img id="sketch-1" class="w-full h-auto grayscale" src= "kei.png">
+            </div>
+            <!-- Sketch 2 (Pink tint) -->
+            <div class="polaroid -rotate-2" style="background: #fff0f3;">
+                <img id="sketch-2" class="w-full h-auto" src="lynn.png">
+            </div>
+            <!-- Sketch 3 -->
+            <div class="polaroid rotate-1">
+                <img id="sketch-3" class="w-full h-auto grayscale" src="tre.png">
+            </div>
+        </div>
+    </section>
+
+    <!-- Reasons Grid -->
+    <section class="max-w-4xl w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-24 relative z-10">
+        <div class="glass-card p-8 text-center">
+            <div class="text-4xl mb-4">✨</div>
+            <h3 class="font-bold text-pink-600 text-lg mb-2">Your Smile</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">The highlight of my day, every single day.</p>
+        </div>
+        <div class="glass-card p-8 text-center">
+            <div class="text-4xl mb-4">💖</div>
+            <h3 class="font-bold text-pink-600 text-lg mb-2">Your Heart</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">Kind, generous, and completely mine.</p>
+        </div>
+        <div class="glass-card p-8 text-center sm:col-span-2 md:col-span-1">
+            <div class="text-4xl mb-4">🌟</div>
+            <h3 class="font-bold text-pink-600 text-lg mb-2">Our Future</h3>
+            <p class="text-gray-500 text-sm leading-relaxed">I can't wait to see where we go next.</p>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="text-center pb-24 relative z-10 w-full px-4">
+        <h2 class="text-4xl md:text-5xl cursive text-pink-600 mb-10">Will you be my forever?</h2>
+        <button onclick="sayYes()" class="bg-pink-500 text-white px-20 py-5 rounded-full font-bold heart-btn shadow-xl text-2xl tracking-wide transition-all hover:bg-pink-600">Yes, Always!</button>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-pink-900/40 backdrop-blur-md hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-[2rem] p-10 max-w-sm w-full text-center shadow-2xl border-4 border-pink-100">
+            <div class="text-7xl mb-6">💍</div>
+            <h2 class="text-3xl font-bold text-pink-600 cursive mb-4">I Knew It!</h2>
+            <p class="text-gray-600 mb-8 leading-relaxed">You've made Tresor the happiest person alive. I love you so much, Keith!</p>
+            <button onclick="closeModal()" class="bg-pink-500 text-white px-10 py-3 rounded-full font-bold">❤</button>
+        </div>
+    </div>
+
+    <script>
+        const apiKey = ""; 
+
+        async function loadImages() {
+            try {
+                // Using the specific sketch styles from the user-provided image
+                const prompt1 = "A detailed graphite pencil sketch of a beautiful African woman leaning her chin on her hand, profile view, short natural hair, soft realistic shading, hand-drawn art style.";
+                const prompt2 = "A romantic pencil drawing on pink tinted paper, portrait of a woman resting head on hand, looking thoughtfully, artistic cross-hatching, fine line pencil work.";
+                const prompt3 = "A charcoal and pencil sketch portrait of a beautiful woman with a stylish short haircut, side profile, resting chin on hand, expressive and romantic hand-drawn style.";
+
+                const results = await Promise.all([
+                    fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`, {
+                        method: 'POST',
+                        body: JSON.stringify({ instances: { prompt: prompt1 }, parameters: { sampleCount: 1 } })
+                    }).then(res => res.json()),
+                    fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`, {
+                        method: 'POST',
+                        body: JSON.stringify({ instances: { prompt: prompt2 }, parameters: { sampleCount: 1 } })
+                    }).then(res => res.json()),
+                    fetch(`https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`, {
+                        method: 'POST',
+                        body: JSON.stringify({ instances: { prompt: prompt3 }, parameters: { sampleCount: 1 } })
+                    }).then(res => res.json())
+                ]);
+
+                if (results[0].predictions?.[0]) document.getElementById('sketch-1').src = `data:image/png;base64,${results[0].predictions[0].bytesBase64Encoded}`;
+                if (results[1].predictions?.[0]) document.getElementById('sketch-2').src = `data:image/png;base64,${results[1].predictions[0].bytesBase64Encoded}`;
+                if (results[2].predictions?.[0]) document.getElementById('sketch-3').src = `data:image/png;base64,${results[2].predictions[0].bytesBase64Encoded}`;
+
+                // Hide loader
+                const loader = document.getElementById('loader');
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 800);
+
+            } catch (err) {
+                console.error("Sketch generation failed", err);
+                document.getElementById('loader').style.display = 'none';
+            }
+        }
+
+        function createHearts() {
+            const container = document.getElementById('heart-container');
+            const heartIcons = ['❤', '💖', '💕', '💗', '🌸'];
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                heart.style.fontSize = (Math.random() * 20 + 12) + 'px';
+                container.appendChild(heart);
+                setTimeout(() => heart.remove(), 6000);
+            }, 500);
+        }
+
+        function toggleLetter() {
+            document.getElementById('envelope').classList.toggle('open');
+        }
+
+        function sayYes() {
+            document.getElementById('success-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('success-modal').style.display = 'none';
+        }
+
+        window.onload = () => {
+            createHearts();
+            loadImages();
+        };
+    </script>
+</body>
+</html>
