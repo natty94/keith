@@ -1,272 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Special Surprise for Ihogoza Keith</title>
-    <!-- Web Icon (Favicon) -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #ff758c;
-            --secondary: #ff7eb3;
-            --bg: #fff5f7;
-        }
+<template>
+  <footer class="footer" id="about">
+    <div class="footer-content">
+      <div class="contact-row">
+        <span><strong>Email:</strong> info@ubumwehotel.rw</span>
+        <span class="separator">|</span>
+        <span><strong>Phone:</strong> +250 722 472 350</span>
+      </div>
 
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: var(--bg);
-            overflow-x: hidden;
-            width: 100%;
-        }
+      <div class="social-links">
+        <a href="https://facebook.com/" target="_blank">Facebook</a>
+        <a href="https://twitter.com" target="_blank">Twitter</a>
+        <a href="https://instagram.com/@t__natty" target="_blank">Instagram</a>
+        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+      </div>
 
-        .cursive {
-            font-family: 'Dancing Script', cursive;
-        }
-
-        /* Brand Icon Styling */
-        .app-icon {
-            width: 60px;
-            height: 60px;
-            background: white;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 20px rgba(255, 117, 140, 0.3);
-            margin-bottom: 1.5rem;
-            border: 2px solid #fff;
-        }
-
-        /* Floating Hearts Animation */
-        .heart {
-            position: fixed;
-            color: var(--primary);
-            font-size: 20px;
-            user-select: none;
-            pointer-events: none;
-            z-index: 0;
-            animation: float 6s linear infinite;
-            opacity: 0;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-        }
-
-        /* Envelope Animation */
-        .envelope-wrapper {
-            position: relative;
-            cursor: pointer;
-            transition: transform 0.3s ease;
-            width: 100%;
-            max-width: 320px;
-            margin: 0 auto;
-        }
-
-        .envelope {
-            position: relative;
-            width: 100%;
-            height: 200px;
-            background: #f19fb1;
-            border-radius: 0 0 10px 10px;
-            box-shadow: 0 15px 35px rgba(255, 117, 140, 0.2);
-        }
-
-        .envelope::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            border-left: 160px solid transparent;
-            border-right: 160px solid transparent;
-            border-top: 110px solid #f9b4c4;
-            transform-origin: top;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            z-index: 3;
-        }
-
-        @media (max-width: 380px) {
-             .envelope::before { border-left-width: 150px; border-right-width: 150px; }
-        }
-
-        .envelope.open::before {
-            transform: rotateX(180deg);
-            z-index: 1;
-        }
-
-        .letter {
-            position: absolute;
-            bottom: 5px;
-            left: 5%;
-            width: 90%;
-            height: 180px;
-            background: white;
-            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            padding: 25px 20px;
-            z-index: 2;
-            overflow: hidden;
-            text-align: center;
-            border-radius: 5px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .envelope.open .letter {
-            transform: translateY(-110px);
-            height: 260px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 24px;
-        }
-
-        .polaroid {
-            background: white;
-            padding: 12px 12px 48px 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
-            max-width: 280px;
-            width: 100%;
-        }
-
-        .polaroid img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 2px;
-            background: #eee;
-        }
-
-        .polaroid:hover {
-            transform: scale(1.05) rotate(0deg) !important;
-            z-index: 20;
-            box-shadow: 0 15px 35px rgba(255, 117, 140, 0.2);
-        }
-
-        .heart-btn { animation: pulse 1.5s infinite; }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-    </style>
-</head>
-<body class="min-h-screen flex flex-col items-center py-10 md:py-16 px-6">
-
-    <div id="heart-container"></div>
-
-    <header class="flex flex-col items-center text-center mb-12 relative z-10 w-full">
-        <div class="app-icon animate-bounce">
-            <span class="text-3xl">💖</span>
-        </div>
-        <h1 class="text-5xl md:text-7xl text-pink-600 cursive mb-4">Hey Ihogoza Keith,</h1>
-        <p class="text-gray-500 text-lg md:text-xl font-light">Tresor made something special just for you...</p>
-    </header>
-
-    <section class="mb-32 md:mb-40 relative z-10 w-full" id="letter-section">
-        <div class="envelope-wrapper" onclick="toggleLetter()">
-            <div id="envelope" class="envelope">
-                <div class="letter shadow-inner">
-                    <p class="text-pink-500 font-bold mb-3 text-lg cursive">My Dearest Keith,</p>
-                    <p class="text-gray-600 text-sm md:text-base leading-relaxed italic">
-                        "Every moment with you is a memory I treasure. You are my greatest adventure and my favorite person."
-                    </p>
-                    <div class="mt-6 text-pink-400 font-bold cursive text-xl">❤ Your Tresor</div>
-                </div>
-            </div>
-            <p class="text-center mt-6 text-pink-400 animate-pulse font-medium">Tap to open the letter</p>
-        </div>
-    </section>
-
-    <section class="max-w-6xl w-full mb-24 relative z-10">
-        <h2 class="text-3xl md:text-4xl text-center cursive text-pink-600 mb-12">Captured Moments</h2>
-        <div class="flex flex-wrap justify-center gap-10 px-4">
-            <!-- You can replace the 'src' attributes with your image filenames -->
-            <div class="polaroid rotate-3">
-                <img src="lynn.png" alt="Memory 1" onerror="this.src='https://via.placeholder.com/250x250?text=Insert+Photo+1'">
-            </div>
-            <div class="polaroid -rotate-2">
-                <img src="tre.png" alt="Memory 2" onerror="this.src='https://via.placeholder.com/250x250?text=Insert+Photo+2'">
-            </div>
-            <div class="polaroid rotate-1">
-                <img src="kei.png" alt="Memory 3" onerror="this.src='https://via.placeholder.com/250x250?text=Insert+Photo+3'">
-            </div>
-        </div>
-    </section>
-
-    <section class="max-w-4xl w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-24 relative z-10">
-        <div class="glass-card p-8 text-center">
-            <div class="text-4xl mb-4">✨</div>
-            <h3 class="font-bold text-pink-600 text-lg mb-2">Your Smile</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">The highlight of my day, every single day.</p>
-        </div>
-        <div class="glass-card p-8 text-center">
-            <div class="text-4xl mb-4">💖</div>
-            <h3 class="font-bold text-pink-600 text-lg mb-2">Your Heart</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">Kind, generous, and completely mine.</p>
-        </div>
-        <div class="glass-card p-8 text-center sm:col-span-2 md:col-span-1">
-            <div class="text-4xl mb-4">🌟</div>
-            <h3 class="font-bold text-pink-600 text-lg mb-2">Our Future</h3>
-            <p class="text-gray-500 text-sm leading-relaxed">I can't wait to see where we go next.</p>
-        </div>
-    </section>
-
-    <section class="text-center pb-24 relative z-10 w-full px-4">
-        <h2 class="text-4xl md:text-5xl cursive text-pink-600 mb-10">Will you be my forever?</h2>
-        <button onclick="sayYes()" class="bg-pink-500 text-white px-20 py-5 rounded-full font-bold heart-btn shadow-xl text-2xl tracking-wide transition-all hover:bg-pink-600">Yes, Always!</button>
-    </section>
-
-    <div id="success-modal" class="fixed inset-0 bg-pink-900/40 backdrop-blur-md hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-[2rem] p-10 max-w-sm w-full text-center shadow-2xl border-4 border-pink-100">
-            <div class="text-7xl mb-6">💍</div>
-            <h2 class="text-3xl font-bold text-pink-600 cursive mb-4">I Knew It!</h2>
-            <p class="text-gray-600 mb-8 leading-relaxed">You've made Tresor the happiest person alive. I love you so much, Keith!</p>
-            <button onclick="closeModal()" class="bg-pink-500 text-white px-10 py-3 rounded-full font-bold">❤</button>
-        </div>
+      <div class="bottom-bar">
+        <p>© 2026 UBUMWE Hotel - Huye District</p>
+        <p class="dev-tag">Developed by <span>SHEMA Tresor</span> from BICTHUB</p>
+      </div>
     </div>
+  </footer>
+</template>
 
-    <script>
-        function createHearts() {
-            const container = document.getElementById('heart-container');
-            const heartIcons = ['❤', '💖', '💕', '💗', '🌸'];
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.classList.add('heart');
-                heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.animationDuration = (Math.random() * 4 + 4) + 's';
-                heart.style.fontSize = (Math.random() * 20 + 12) + 'px';
-                container.appendChild(heart);
-                setTimeout(() => heart.remove(), 6000);
-            }, 500);
-        }
+<style scoped>
+.footer {
+  /* Strictly maintained positions */
+  position: absolute;
+  left: 15px;
+  top: 500px;
+  width: 1150px;
+  height: 150px;
+  
+  /* Visual Styles */
+  background: #2c2c2c;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: inset 0px 4px 10px coral;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-sizing: border-box; /* Ensures padding doesn't break the width */
+}
 
-        function toggleLetter() {
-            document.getElementById('envelope').classList.toggle('open');
-        }
+.contact-row {
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
 
-        function sayYes() {
-            document.getElementById('success-modal').style.display = 'flex';
-        }
+.separator {
+  margin: 0 15px;
+  color: coral;
+}
 
-        function closeModal() {
-            document.getElementById('success-modal').style.display = 'none';
-        }
+.social-links {
+  margin-bottom: 15px;
+}
 
-        window.onload = () => {
-            createHearts();
-        };
-    </script>
-</body>
-</html>
+.social-links a {
+  margin: 0 12px;
+  color: #4db6ac;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.social-links a:hover {
+  color: coral;
+  text-decoration: underline;
+}
+
+.bottom-bar {
+  font-size: 0.8rem;
+  border-top: 1px solid #444;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dev-tag span {
+  color: #4db6ac;
+  font-weight: bold;
+}
+</style>
