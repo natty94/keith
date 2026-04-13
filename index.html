@@ -1,87 +1,303 @@
-<template>
-  <footer class="footer" id="about">
-    <div class="footer-content">
-      <div class="contact-row">
-        <span><strong>Email:</strong> info@ubumwehotel.rw</span>
-        <span class="separator">|</span>
-        <span><strong>Phone:</strong> +250 722 472 350</span>
-      </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Keith Collection | Pink Petal Edition</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --petal-pink: #fce4ec;
+            --rose-gold: #e5b09e;
+            --deep-rose: #880e4f;
+            --soft-white: #fff9fb;
+        }
 
-      <div class="social-links">
-        <a href="https://facebook.com/" target="_blank">Facebook</a>
-        <a href="https://twitter.com" target="_blank">Twitter</a>
-        <a href="https://instagram.com/@t__natty" target="_blank">Instagram</a>
-        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
-      </div>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--soft-white);
+            color: var(--deep-rose);
+            overflow-x: hidden;
+            letter-spacing: 0.02em;
+        }
 
-      <div class="bottom-bar">
-        <p>© 2026 UBUMWE Hotel - Huye District</p>
-        <p class="dev-tag">Developed by <span>SHEMA Tresor</span> from BICTHUB</p>
-      </div>
+        .serif { font-family: 'Playfair Display', serif; }
+
+        /* Falling Petals Styles */
+        #petal-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .petal {
+            position: absolute;
+            background: #ffc1e3;
+            border-radius: 150% 0 150% 0;
+            opacity: 0.7;
+            transform-origin: center;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(110vh) translateX(100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Premium Glassmorphism */
+        .petal-glass {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 193, 227, 0.5);
+            box-shadow: 0 8px 32px rgba(136, 14, 79, 0.08);
+            border-radius: 20px;
+        }
+
+        /* Gold Shimmer Text */
+        .rose-gold-text {
+            background: linear-gradient(to right, #b87333, #f4c2c2, #b87333);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        /* Image Framing */
+        .editorial-frame {
+            position: relative;
+            padding: 15px;
+            background: #fff;
+            box-shadow: 0 20px 50px rgba(136, 14, 79, 0.1);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1px solid rgba(229, 176, 158, 0.3);
+        }
+
+        .editorial-frame:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(136, 14, 79, 0.15);
+        }
+
+        .editorial-frame img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Button */
+        .btn-petal {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            color: var(--deep-rose);
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(136, 14, 79, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(136, 14, 79, 0.1);
+        }
+
+        .btn-petal:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(136, 14, 79, 0.2);
+            background: linear-gradient(135deg, #f8bbd0 0%, #fce4ec 100%);
+        }
+
+        /* IG Button Styling */
+        .ig-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff;
+            color: #d62976;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #fce4ec;
+        }
+
+        .ig-link:hover {
+            background: #fce4ec;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Petal Animation Layer -->
+    <div id="petal-container"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-[150] py-6 px-10 flex justify-between items-center mix-blend-multiply">
+        <div class="text-xs tracking-[0.4em] uppercase font-semibold text-rose-400">Pour Ihogoza</div>
+        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-white shadow-sm text-pink-300 italic serif">K</div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="min-h-screen flex flex-col items-center justify-center px-6 text-center relative">
+        <div class="reveal">
+            <span class="text-pink-300 uppercase tracking-[0.6em] text-[10px] mb-6 block">A Petal for Every Thought</span>
+            <h1 class="text-6xl md:text-9xl serif italic rose-gold-text mb-8">Keith</h1>
+            <p class="max-w-md mx-auto text-pink-400/80 font-light leading-relaxed serif italic text-xl">
+                "In a garden of billion souls, my eyes only seek your bloom."
+            </p>
+        </div>
+        
+        <div class="absolute bottom-10 animate-bounce text-pink-200">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </section>
+
+    <!-- Content: The Letter -->
+    <section class="py-32 px-6">
+        <div class="max-w-3xl mx-auto petal-glass p-10 md:p-20 text-center reveal">
+            <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-10 text-pink-400">🌸</div>
+            <h2 class="text-3xl md:text-4xl serif italic mb-10">My Dearest Keith,</h2>
+            <div class="text-lg md:text-xl leading-loose font-light text-pink-900/70 serif italic">
+                "I wanted to build a place as soft and beautiful as your heart. Just as these petals fall gently, my love for you settles into every corner of my life—quietly, beautifully, and completely. You are my spring that never ends."
+            </div>
+            <div class="mt-12 w-20 h-px bg-pink-200 mx-auto"></div>
+            <p class="mt-8 font-semibold tracking-widest text-pink-300 uppercase text-xs">With all of me, Tresor</p>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <section class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+            <!-- Image 1 -->
+            <div class="reveal">
+                <div class="editorial-frame">
+                    <img src="lynn.png" alt="Memory" onerror="this.src='https://via.placeholder.com/800x1000?text=Bloom+I'">
+                    <div class="mt-6 text-center text-[10px] tracking-widest uppercase text-pink-300 italic">Phase I: The Spark</div>
+                </div>
+            </div>
+            <!-- Image 2 -->
+            <div class="reveal md:mt-40">
+                <div class="editorial-frame">
+                    <img src="tre.png" alt="Memory" onerror="this.src='https://via.placeholder.com/800x1000?text=Bloom+II'">
+                    <div class="mt-6 text-center text-[10px] tracking-widest uppercase text-pink-300 italic">Phase II: The Harmony</div>
+                </div>
+            </div>
+            <!-- Image 3 -->
+            <div class="reveal md:-mt-20">
+                <div class="editorial-frame">
+                    <img src="kei.png" alt="Memory" onerror="this.src='https://via.placeholder.com/800x1000?text=Bloom+III'">
+                    <div class="mt-6 text-center text-[10px] tracking-widest uppercase text-pink-300 italic">Phase III: The Promise</div>
+                </div>
+            </div>
+            <!-- Image 4 -->
+            <div class="reveal">
+                <div class="editorial-frame">
+                    <img src="image_d9cd03.jpg" alt="Memory" onerror="this.src='https://via.placeholder.com/800x1000?text=Bloom+IV'">
+                    <div class="mt-6 text-center text-[10px] tracking-widest uppercase text-pink-300 italic">Phase IV: The Forever</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Proposal / Call to Action -->
+    <section class="py-60 text-center px-6 bg-pink-50/30">
+        <div class="max-w-2xl mx-auto reveal">
+            <h2 class="text-5xl md:text-7xl serif italic rose-gold-text mb-12">Will You Be My Always?</h2>
+            
+            <div class="flex flex-col items-center gap-8">
+                <button onclick="triggerLove()" class="btn-petal">Yes, Forever</button>
+                
+                <a href="https://www.instagram.com/direct/t/tresor_your_id" target="_blank" class="ig-link">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.332 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.246 3.608-1.308 1.266-.058 1.646-.07 4.85-.07zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.355 2.618 6.778 6.98 6.977 1.28.057 1.688.072 4.948.072 3.259 0 3.668-.015 4.948-.072 4.351-.2 6.777-2.618 6.977-6.977.058-1.28.072-1.689.072-4.948 0-3.259-.014-3.668-.072-4.947-.196-4.354-2.617-6.78-6.977-6.977C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    Send me a DM on Instagram
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 text-center text-pink-200 text-xs tracking-[0.6em] uppercase">
+        Keith & Tresor &bull; Perpetual Spring &bull; 2024
+    </footer>
+
+    <!-- Success Overlay -->
+    <div id="love-overlay" class="fixed inset-0 z-[200] hidden items-center justify-center p-6 bg-pink-100/90 backdrop-blur-xl">
+        <div class="text-center max-w-lg reveal active">
+            <div class="text-6xl mb-8">🌸</div>
+            <h3 class="text-4xl serif italic text-pink-900 mb-6">It is a Promise.</h3>
+            <p class="text-pink-800/60 leading-relaxed serif italic text-lg mb-12">
+                "Our story continues with every falling petal. I am yours, now and always."
+            </p>
+            <button onclick="closeOverlay()" class="text-pink-400 uppercase text-[10px] tracking-[0.4em] border-b border-pink-200 pb-2">Return to our garden</button>
+        </div>
     </div>
-  </footer>
-</template>
 
-<style scoped>
-.footer {
-  /* Strictly maintained positions */
-  position: absolute;
-  left: 15px;
-  top: 500px;
-  width: 1150px;
-  height: 150px;
-  
-  /* Visual Styles */
-  background: #2c2c2c;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  border-radius: 4px;
-  box-shadow: inset 0px 4px 10px coral;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-sizing: border-box; /* Ensures padding doesn't break the width */
-}
+    <script>
+        // Petal Generator
+        function createPetals() {
+            const container = document.getElementById('petal-container');
+            const petalCount = 30;
 
-.contact-row {
-  margin-bottom: 10px;
-  font-size: 0.9rem;
-}
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                
+                // Randomize appearance
+                const size = Math.random() * 15 + 10 + 'px';
+                petal.style.width = size;
+                petal.style.height = size;
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.animationDuration = Math.random() * 5 + 5 + 's';
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                
+                // Random shades of pink
+                const colors = ['#ffc1e3', '#f8bbd0', '#fce4ec', '#f48fb1'];
+                petal.style.background = colors[Math.floor(Math.random() * colors.length)];
 
-.separator {
-  margin: 0 15px;
-  color: coral;
-}
+                container.appendChild(petal);
+            }
+        }
 
-.social-links {
-  margin-bottom: 15px;
-}
+        // Intersection Observer for Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
 
-.social-links a {
-  margin: 0 12px;
-  color: #4db6ac;
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s;
-}
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-.social-links a:hover {
-  color: coral;
-  text-decoration: underline;
-}
+        function triggerLove() {
+            document.getElementById('love-overlay').classList.remove('hidden');
+            document.getElementById('love-overlay').classList.add('flex');
+        }
 
-.bottom-bar {
-  font-size: 0.8rem;
-  border-top: 1px solid #444;
-  padding-top: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+        function closeOverlay() {
+            document.getElementById('love-overlay').classList.add('hidden');
+        }
 
-.dev-tag span {
-  color: #4db6ac;
-  font-weight: bold;
-}
-</style>
+        window.onload = () => {
+            createPetals();
+            // Trigger first section
+            setTimeout(() => {
+                document.querySelector('section:first-of-type .reveal').classList.add('active');
+            }, 300);
+        };
+    </script>
+</body>
+</html>
