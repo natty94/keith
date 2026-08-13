@@ -3,301 +3,1659 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Keith Collection | Pink Petal Edition</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+    <title>Pink Petals Decor — Premium Event Styling & Showroom</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Quicksand:wght@300;400;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'Fira Code', 'monospace']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 20s linear infinite',
+                        'float-slow': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },  
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
     <style>
-        :root {
-            --petal-pink: #fce4ec;
-            --rose-gold: #e5b09e;
-            --deep-rose: #880e4f;
-            --soft-white: #fff9fb;
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-
-        body {
-            font-family: 'Quicksand', sans-serif;
-            background-color: var(--soft-white);
-            color: var(--deep-rose);
-            overflow-x: hidden;
-            letter-spacing: 0.02em;
+        ::-webkit-scrollbar-track {
+            background: #0a0102;
         }
-
-        .serif { font-family: 'Playfair Display', serif; }
-
-        /* Falling Petals Styles */
-        #petal-container {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 100;
+        ::-webkit-scrollbar-thumb {
+            background: #3a060d;
+            border-radius: 9999px;
+            border: 2px solid #0a0102;
         }
-
-        .petal {
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B01E28;
+        }
+        
+        .bento-card {
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .glow-border::after {
+            content: '';
             position: absolute;
-            background: #ffc1e3;
-            border-radius: 150% 0 150% 0;
-            opacity: 0.7;
-            transform-origin: center;
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0.8; }
-            100% { transform: translateY(110vh) translateX(100px) rotate(360deg); opacity: 0; }
-        }
-
-        /* Premium Glassmorphism */
-        .petal-glass {
-            background: rgba(255, 255, 255, 0.4);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 193, 227, 0.5);
-            box-shadow: 0 8px 32px rgba(136, 14, 79, 0.08);
-            border-radius: 20px;
-        }
-
-        /* Gold Shimmer Text */
-        .rose-gold-text {
-            background: linear-gradient(to right, #b87333, #f4c2c2, #b87333);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 700;
-        }
-
-        /* Image Framing */
-        .editorial-frame {
-            position: relative;
-            padding: 15px;
-            background: #fff;
-            box-shadow: 0 20px 50px rgba(136, 14, 79, 0.1);
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            border: 1px solid rgba(229, 176, 158, 0.3);
-        }
-
-        .editorial-frame:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(136, 14, 79, 0.15);
-        }
-
-        .editorial-frame img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Reveal Animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease-out;
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Custom Button */
-        .btn-petal {
-            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
-            color: var(--deep-rose);
-            padding: 1rem 3rem;
-            border-radius: 50px;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            box-shadow: 0 10px 20px rgba(136, 14, 79, 0.1);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(136, 14, 79, 0.1);
-        }
-
-        .btn-petal:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px rgba(136, 14, 79, 0.2);
-            background: linear-gradient(135deg, #f8bbd0 0%, #fce4ec 100%);
-        }
-
-        /* IG Button Styling */
-        .ig-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: #fff;
-            color: #d62976;
-            padding: 0.8rem 2rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: all 0.3s ease;
-            border: 1px solid #fce4ec;
-        }
-
-        .ig-link:hover {
-            background: #fce4ec;
-            transform: translateY(-2px);
+            inset: 0;
+            border-radius: 24px;
+            padding: 1.5px;
+            background: linear-gradient(to bottom right, rgba(255,255,255,0.08), rgba(176,30,40,0.2));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
         }
     </style>
 </head>
-<body>
+<body class="bg-neutral-950 text-neutral-100 selection:bg-red-600 selection:text-white overflow-y-auto overflow-x-hidden min-h-screen">
 
-    <!-- Petal Animation Layer -->
-    <div id="petal-container"></div>
-
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-[150] py-6 px-10 flex justify-between items-center mix-blend-multiply">
-        <div class="text-xs tracking-[0.4em] uppercase font-semibold text-rose-400">Pour Ihogoza</div>
-        <div class="w-8 h-8 flex items-center justify-center rounded-full bg-white shadow-sm text-pink-300 italic serif">K</div>
-    </nav>
-
-    <!-- Header Section -->
-    <section class="min-h-screen flex flex-col items-center justify-center px-6 text-center relative">
-        <div class="reveal">
-            <span class="text-pink-300 uppercase tracking-[0.6em] text-[10px] mb-6 block">A Petal for Every Thought</span>
-            <h1 class="text-6xl md:text-9xl serif italic rose-gold-text mb-8">Keith</h1>
-            <p class="max-w-md mx-auto text-pink-400/80 font-light leading-relaxed serif italic text-xl">
-                "In a garden of billion souls, my eyes only seek your bloom."
-            </p>
-        </div>
+    <div id="app" class="relative min-h-screen p-4 md:p-8 lg:p-12 flex flex-col justify-center items-center">
         
-        <div class="absolute bottom-10 animate-bounce text-pink-200">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        <!-- Interactive Glowing Background Auroras -->
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+            <div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full blur-[140px] opacity-25 transition-all duration-1000 ease-out"
+                 :style="{ backgroundColor: currentTheme.glowColor1 }"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-[140px] opacity-20 transition-all duration-1000 ease-out"
+                 :style="{ backgroundColor: currentTheme.glowColor2 }"></div>
         </div>
-    </section>
 
-    <!-- Content: The Letter -->
-    <section class="py-32 px-6">
-        <div class="max-w-3xl mx-auto petal-glass p-10 md:p-20 text-center reveal">
-            <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-10 text-pink-400">🌸</div>
-            <h2 class="text-3xl md:text-4xl serif italic mb-10">My Dearest Keith,</h2>
-            <div class="text-lg md:text-xl leading-loose font-light text-pink-900/70 serif italic">
-                "I wanted to build a place as soft and beautiful as your heart. Just as these petals fall gently, my love for you settles into every corner of my life—quietly, beautifully, and completely. You are my spring that never ends."
-            </div>
-            <div class="mt-12 w-20 h-px bg-pink-200 mx-auto"></div>
-            <p class="mt-8 font-semibold tracking-widest text-pink-300 uppercase text-xs">With all of me, Tresor</p>
-        </div>
-    </section>
-
-    <!-- Gallery Grid -->
-    <section class="py-32 px-6 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-            <!-- Image 1 -->
-            <div class="reveal">
-                <div class="editorial-frame">
-                    <img src="lynn.png" alt="Memory" onerror="this.src='https://via.placeholder.com/800x1000?text=Bloom+I'">
-                    <div class="mt-6 text-center text-[10px] tracking-widest uppercase text-pink-300 italic">Phase I: The Spark</div>
+        <!-- System Toast Notifications -->
+        <div class="fixed top-6 right-6 z-[100] space-y-3 max-w-sm w-full pointer-events-none">
+            <div v-for="toast in toasts" :key="toast.id" 
+                 class="p-4 rounded-xl border border-neutral-800/80 bg-neutral-900/90 backdrop-blur-md shadow-2xl flex items-start gap-3 pointer-events-auto transition-all duration-500 transform translate-x-0">
+                <div class="w-8 h-8 rounded-lg bg-red-900/20 border border-red-500/30 flex items-center justify-center text-red-500">
+                    <i class="fas fa-bell"></i>
                 </div>
-            </div>
-            <!-- Image 2 -->
-            <div class="reveal md:mt-40">
-                <div class="editorial-frame">
-                    <img src="tre.png" alt="Memory" onerror="this.src='https://via.placeholder.com/800x1000?text=Bloom+II'">
-                    <div class="mt-6 text-center text-[10px] tracking-widest uppercase text-pink-300 italic">Phase II: The Harmony</div>
-                </div>
-            </div>
-            <!-- Image 3 -->
-            <div class="reveal md:-mt-20">
-                <div class="editorial-frame">
-                    <img src="kei.png" alt="Memory" onerror="this.src='https://via.placeholder.com/800x1000?text=Bloom+III'">
-                    <div class="mt-6 text-center text-[10px] tracking-widest uppercase text-pink-300 italic">Phase III: The Promise</div>
-                </div>
-            </div>
-            <!-- Image 4 -->
-            <div class="reveal">
-                <div class="editorial-frame">
-                    <img src="image_d9cd03.jpg" alt="Memory" onerror="this.src='https://via.placeholder.com/800x1000?text=Bloom+IV'">
-                    <div class="mt-6 text-center text-[10px] tracking-widest uppercase text-pink-300 italic">Phase IV: The Forever</div>
+                <div class="flex-1">
+                    <h5 class="text-xs font-bold text-white uppercase tracking-wider font-mono">Notification</h5>
+                    <p class="text-xs text-neutral-400 mt-1">{{ toast.message }}</p>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- The Proposal / Call to Action -->
-    <section class="py-60 text-center px-6 bg-pink-50/30">
-        <div class="max-w-2xl mx-auto reveal">
-            <h2 class="text-5xl md:text-7xl serif italic rose-gold-text mb-12">Will You Be My Always?</h2>
+        <div class="w-full max-w-6xl relative z-10 flex flex-col gap-6">
             
-            <div class="flex flex-col items-center gap-8">
-                <button onclick="triggerLove()" class="btn-petal">Yes, Forever</button>
+            <header class="w-full flex justify-between items-center bg-neutral-900/40 border border-neutral-800/40 backdrop-blur-md rounded-2xl px-6 py-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr flex items-center justify-center font-bold text-sm tracking-widest shadow-md transition-all duration-700 relative overflow-hidden"
+                         :class="currentTheme.brandGradient">
+                        <svg class="w-6 h-6 text-white absolute" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21V9m0-6a3 3 0 00-3 3v2a3 3 0 006 0V6a3 3 0 00-3-3zm3.716 11.253a6.002 6.002 0 01-11.432 0m11.432 0a8.949 8.949 0 01-1.412 3.597M4.284 14.253a8.949 8.949 0 001.412 3.597m0 0a6.003 6.003 0 008.608 0" />
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="font-serif font-bold tracking-wider block text-base md:text-lg">Pink Petals Decor</span>
+                        <span class="text-[10px] text-neutral-400 font-sans tracking-widest uppercase flex items-center gap-1.5">
+                            <span class="inline-block w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span> Kigali Luxury Atelier
+                        </span>
+                    </div>
+                </div>
                 
-                <a href="https://www.instagram.com/direct/t/tresor_your_id" target="_blank" class="ig-link">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.246 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.332 2.633-1.308 3.608-.975.975-2.242 1.246-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.332-3.608-1.308-.975-.975-1.246-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.246 3.608-1.308 1.266-.058 1.646-.07 4.85-.07zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.355 2.618 6.778 6.98 6.977 1.28.057 1.688.072 4.948.072 3.259 0 3.668-.015 4.948-.072 4.351-.2 6.777-2.618 6.977-6.977.058-1.28.072-1.689.072-4.948 0-3.259-.014-3.668-.072-4.947-.196-4.354-2.617-6.78-6.977-6.977C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                    Send me a DM on Instagram
+                <div class="flex items-center gap-2 sm:gap-4">
+                    <div class="hidden md:flex items-center gap-2 px-3.5 py-1.5 bg-neutral-800/40 border border-neutral-800/80 rounded-full text-xs">
+                        <span class="text-neutral-400 font-mono">{{ kigaliTime }} (Kigali)</span>
+                    </div>
+
+                    <!-- Admin Auth Status button -->
+                    <button v-if="!isAdminLoggedIn" @click="adminModalOpen = true" 
+                            class="px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-xl border border-neutral-800 hover:border-neutral-700 bg-neutral-900/60 transition-all flex items-center gap-2">
+                        <i class="fas fa-user-shield text-neutral-400"></i>
+                        <span>Admin Access</span>
+                    </button>
+                    <button v-else @click="openAdminDashboard" 
+                            class="px-4 py-2 text-xs font-semibold uppercase tracking-wider rounded-xl border border-red-500/30 bg-red-950/20 text-red-400 transition-all flex items-center gap-2">
+                        <i class="fas fa-chart-line animate-pulse"></i>
+                        <span>Dashboard</span>
+                    </button>
+                    
+                    <button @click="openContactModal" class="px-5 py-2.5 text-xs font-semibold uppercase tracking-wider rounded-xl transition-all duration-300 flex items-center gap-2 group"
+                            :class="currentTheme.btnFill">
+                        <span>Book Design</span>
+                        <svg class="w-3.5 h-3.5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </button>
+                </div>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-min md:auto-rows-[12.5rem]">
+                
+                <!-- Card 1: Brand Essence -->
+                <div class="md:col-span-2 md:row-span-2 bg-neutral-900/30 border border-neutral-800/40 rounded-[2rem] p-8 flex flex-col justify-between backdrop-blur-md relative overflow-hidden group bento-card hover:translate-y-[-4px] hover:shadow-2xl hover:shadow-neutral-950/50 glow-border">
+                    <div class="absolute -right-10 -top-10 w-44 h-44 rounded-full blur-3xl opacity-10 transition-all duration-700 group-hover:opacity-25"
+                         :style="{ backgroundColor: currentTheme.glowColor1 }"></div>
+                    
+                    <div class="space-y-6">
+                        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr flex items-center justify-center text-xl font-bold shadow-lg transition-all duration-700 hover:scale-110 relative"
+                             :class="currentTheme.brandGradient">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="1.2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21V9m0-6a3 3 0 00-3 3v2a3 3 0 006 0V6a3 3 0 00-3-3zm3.716 11.253a6.002 6.002 0 01-11.432 0m11.432 0a8.949 8.949 0 01-1.412 3.597M4.284 14.253a8.949 8.949 0 001.412 3.597m0 0a6.003 6.003 0 008.608 0" />
+                            </svg>
+                        </div>
+                        <div class="space-y-3">
+                            <span class="text-xs uppercase font-mono tracking-widest flex items-center gap-1.5" :class="currentTheme.accentText">
+                                <i class="fas fa-signature text-xs"></i>
+                                Kigali's Premier Luxury Stylists
+                            </span>
+                            <h1 class="text-4xl md:text-5xl font-serif font-light tracking-tight bg-gradient-to-r from-white via-neutral-100 to-neutral-300 bg-clip-text text-transparent">
+                                Designing Majestic <i class="text-red-500 font-serif">Aura</i>
+                            </h1>
+                            <p class="text-neutral-400 font-normal leading-relaxed text-sm md:text-base max-w-md">
+                                Setting premium standard for events. Specializing in high-contrast red and white aesthetics for Grand Weddings, Gusaba ceremonies, and bespoke corporate events in Rwanda.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-2 mt-8">
+                        <span class="px-3.5 py-2 bg-neutral-900/80 border border-neutral-800/80 rounded-full text-xs font-medium text-neutral-300 flex items-center gap-2">
+                            <i class="fas fa-map-marker-alt text-red-500"></i>
+                            Kigali, Rwanda
+                        </span>
+                        <span class="px-3.5 py-2 bg-red-500/10 border border-red-500/20 rounded-full text-xs font-medium text-red-400 flex items-center gap-2">
+                            <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                            Booking 2026/2027 Seasons
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Card 2: Mood Engine -->
+                <div class="md:col-span-2 md:row-span-1 bg-neutral-900/30 border border-neutral-800/40 rounded-[2rem] p-6 flex flex-col justify-between backdrop-blur-md bento-card hover:translate-y-[-4px] glow-border">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-semibold tracking-widest text-neutral-500 uppercase flex items-center gap-2 font-mono">
+                            <i class="fas fa-palette text-red-500"></i>
+                            Ambient Atmosphere
+                        </span>
+                        <span class="text-xs font-mono px-2 py-0.5 bg-neutral-800/50 rounded text-neutral-400">Mood Engine</span>
+                    </div>
+                    
+                    <div>
+                        <h4 class="text-xs font-semibold mb-3 text-neutral-200">Select luxury visual palette:</h4>
+                        <div class="flex gap-3">
+                            <button v-for="(theme, key) in themes" :key="key"
+                                    @click="changeTheme(key)"
+                                    class="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300 transform hover:scale-110 active:scale-95 relative border border-white/5"
+                                    :class="[theme.bgControl, currentThemeKey === key ? 'ring-2 ring-white scale-105 shadow-lg' : 'opacity-70']"
+                                    :title="theme.name">
+                                <svg v-if="currentThemeKey === key" class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.286L13 21l-2.286-6.857L5 12l5.714-2.286L13 3z" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Interactive Categories & Filter -->
+                <div class="md:col-span-2 md:row-span-1 bg-neutral-900/30 border border-neutral-800/40 rounded-[2rem] p-6 flex flex-col justify-between backdrop-blur-md bento-card hover:translate-y-[-4px] glow-border">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xs font-semibold tracking-widest text-neutral-500 uppercase flex items-center gap-2 font-mono">
+                                <i class="fas fa-filter text-red-500"></i>
+                                Design Specialties
+                            </h3>
+                            <span class="text-[10px] text-neutral-400 font-mono">Filter Portfolio</span>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span v-for="pill in specPills" :key="pill.name"
+                                  @click="toggleSpecFilter(pill.name)"
+                                  class="px-3.5 py-1.5 bg-neutral-800/30 border text-xs rounded-xl text-neutral-300 hover:border-neutral-700 transition-all cursor-pointer select-none flex items-center gap-2"
+                                  :class="selectedSpec === pill.name ? 'border-red-500/80 bg-red-500/10 text-white font-medium' : 'border-neutral-800/80'">
+                                <span class="text-xs" :style="{ color: selectedSpec === pill.name ? '#ef4444' : pill.color }">●</span>
+                                {{ pill.name }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Instagram Feed -->
+                <a href="https://www.instagram.com/pink_petals_decor_ltd/" target="_blank" class="md:col-span-1 md:row-span-1 bg-neutral-900/30 border border-neutral-800/40 rounded-[2rem] p-6 flex flex-col justify-between backdrop-blur-md hover:border-neutral-700/80 transition-all duration-500 group bento-card hover:translate-y-[-4px] glow-border">
+                    <div class="flex justify-between items-start">
+                        <div class="text-neutral-400 group-hover:text-red-500 transition-colors duration-300">
+                            <i class="fab fa-instagram text-3xl"></i>
+                        </div>
+                        <span class="text-neutral-500 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300">
+                            <i class="fas fa-arrow-up-right-from-square"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <p class="text-[10px] text-neutral-500 font-semibold tracking-wider uppercase font-mono">Live Gallery</p>
+                        <p class="text-sm font-bold text-neutral-200 mt-1">@pink_petals_decor_ltd</p>
+                    </div>
                 </a>
+
+                <!-- Card 5: WhatsApp Booking Link -->
+                <a href="https://wa.me/250788549800" target="_blank" class="md:col-span-1 md:row-span-1 bg-gradient-to-br from-red-700 to-rose-900 rounded-[2rem] p-6 flex flex-col justify-between shadow-xl shadow-red-700/10 hover:opacity-95 transition-all duration-500 group relative overflow-hidden bento-card hover:translate-y-[-4px]">
+                    <div class="absolute -left-4 -bottom-4 w-28 h-28 bg-white/5 rounded-full blur-xl"></div>
+                    <div class="flex justify-between items-start text-white w-full relative z-10">
+                        <i class="fab fa-whatsapp text-3xl"></i>
+                        <span class="text-white/80 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300">
+                            <i class="fas fa-arrow-up-right-from-square"></i>
+                        </span>
+                    </div>
+                    <div class="relative z-10">
+                        <p class="text-[10px] text-red-200 font-semibold tracking-wider uppercase font-mono">Instant Chat</p>
+                        <p class="text-sm font-bold text-white mt-1">Direct WhatsApp</p>
+                    </div>
+                </a>
+
+                <!-- Card 6: Interactive Showcase & Dynamic Details -->
+                <div class="md:col-span-2 md:row-span-2 bg-neutral-900/30 border border-neutral-800/40 rounded-[2rem] p-6 flex flex-col justify-between backdrop-blur-md overflow-hidden group bento-card hover:translate-y-[-4px] glow-border">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-semibold tracking-widest text-red-400 uppercase font-mono flex items-center gap-2">
+                                <i class="fas fa-image animate-pulse"></i>
+                                Curated Portfolio
+                            </span>
+                            <span class="text-xs text-neutral-500 font-mono">Slide {{ activeProjectIndex + 1 }} / {{ filteredProjects.length }}</span>
+                        </div>
+                        
+                        <div class="min-h-[6.5rem]">
+                            <h2 class="text-xl md:text-2xl font-bold text-neutral-100 group-hover:text-red-400 transition-colors duration-300 font-serif">
+                                {{ activeProject.title }}
+                            </h2>
+                            <p class="text-neutral-400 text-xs md:text-sm mt-1.5 leading-relaxed">
+                                {{ activeProject.description }}
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Dynamic Simulated Laptop View -->
+                    <div class="mt-4 bg-neutral-950 border border-neutral-800/80 rounded-2xl p-3 transform transition-all duration-500 relative flex flex-col gap-2 shadow-2xl h-[170px] overflow-hidden">
+                        <div class="flex justify-between items-center">
+                            <div class="flex gap-1.5">
+                                <span class="w-2.5 h-2.5 rounded-full bg-red-500/60"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/60"></span>
+                                <span class="w-2.5 h-2.5 rounded-full bg-green-500/60"></span>
+                            </div>
+                            <span class="text-[10px] text-neutral-500 font-mono bg-neutral-900 px-3 py-0.5 rounded border border-neutral-800/60">
+                                {{ activeProject.tagline }}
+                            </span>
+                            <div class="w-2.5 h-2.5"></div>
+                        </div>
+                        
+                        <!-- Mini Preview of Project with Custom Photo -->
+                        <div class="flex-1 bg-neutral-900/50 rounded-lg border border-neutral-800/50 overflow-hidden relative flex flex-col items-center justify-center">
+                            <div class="absolute inset-0 opacity-20" :style="{ background: activeProject.bgPattern }"></div>
+                            <div class="absolute inset-0 bg-cover bg-center opacity-70 mix-blend-screen transition-all duration-700 scale-105 group-hover:scale-100" :style="{ backgroundImage: 'url(' + activeProject.image + ')' }"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/40 to-transparent"></div>
+                            
+                            <div class="absolute bottom-2 left-3 right-3 z-10 flex justify-between items-end">
+                                <div class="text-left">
+                                    <div class="text-xs font-bold text-white tracking-wide font-serif">{{ activeProject.title }}</div>
+                                    <div class="flex gap-1 mt-1 flex-wrap">
+                                        <span v-for="tag in activeProject.tags" :key="tag" class="px-1.5 py-0.5 bg-neutral-950/90 border border-neutral-800 text-[8px] rounded font-mono text-neutral-300">
+                                            {{ tag }}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="w-6 h-6 text-red-500 flex items-center justify-center bg-neutral-900/90 rounded-full border border-neutral-800">
+                                    <i class="fas fa-sparkles text-xs"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide Controls -->
+                    <div class="flex justify-between items-center mt-4 pt-2 border-t border-neutral-800/40">
+                        <div class="flex gap-1.5">
+                            <span v-for="(project, idx) in filteredProjects" :key="idx"
+                                  @click="activeProjectIndex = idx"
+                                  class="h-1.5 rounded-full transition-all duration-300 cursor-pointer"
+                                  :class="activeProjectIndex === idx ? 'w-6 bg-red-500' : 'w-1.5 bg-neutral-800'"></span>
+                        </div>
+                        <div class="flex gap-2">
+                            <button @click="prevProject" class="w-8 h-8 rounded-lg bg-neutral-800/40 border border-neutral-800 hover:border-neutral-700 text-xs flex items-center justify-center transition-colors">
+                                <i class="fas fa-chevron-left text-neutral-400"></i>
+                            </button>
+                            <button @click="nextProject" class="w-8 h-8 rounded-lg bg-neutral-800/40 border border-neutral-800 hover:border-neutral-700 text-xs flex items-center justify-center transition-colors">
+                                <i class="fas fa-chevron-right text-neutral-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 7: Interactive Space Blueprint Simulator -->
+                <div class="md:col-span-2 md:row-span-1 bg-neutral-900/30 border border-neutral-800/40 rounded-[2rem] p-6 flex flex-col justify-between backdrop-blur-md overflow-hidden relative group bento-card hover:translate-y-[-4px] glow-border"
+                     @mousemove="updateCanvasInteract"
+                     @mouseleave="resetCanvasInteract">
+                    
+                    <canvas id="interactiveCanvas" class="absolute inset-0 w-full h-full opacity-40 pointer-events-none"></canvas>
+                    
+                    <div class="space-y-1 relative z-10">
+                        <span class="text-xs font-semibold tracking-widest uppercase flex items-center gap-1.5 font-mono" :class="currentTheme.accentText">
+                            <i class="fas fa-drafting-compass"></i>
+                            Spatial Orchestration
+                        </span>
+                        <h3 class="text-lg font-bold text-neutral-200">Interactive Floor Plan Simulator</h3>
+                        <p class="text-neutral-400 text-xs max-w-sm leading-relaxed">
+                            Simulated vector system displaying custom banquet circular setups. Hover cursor to map routing connections.
+                        </p>
+                    </div>
+                    
+                    <div class="flex justify-between items-center mt-4 relative z-10">
+                        <span class="text-[10px] text-neutral-500 font-mono">Cinematic Layout Simulator</span>
+                        <div class="w-10 h-10 rounded-xl bg-neutral-800/40 border border-neutral-800 flex items-center justify-center text-sm group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-ruler-combined text-red-500"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="bg-neutral-900/30 border border-neutral-800/40 rounded-[2rem] p-8 backdrop-blur-md glow-border mt-4">
+                <div class="flex flex-col md:flex-row md:items-end md:justify-between mb-8 gap-4">
+                    <div>
+                        <span class="text-xs font-semibold tracking-widest text-red-400 uppercase font-mono">Visual Mastery</span>
+                        <h2 class="text-3xl font-serif mt-2">The Interactive Atelier Gallery</h2>
+                        <p class="text-neutral-400 text-sm mt-1">Explore our exclusive, high-contrast Red & White curation portfolio of 12 distinct styled events.</p>
+                    </div>
+                    
+                    <!-- Gallery Filter Controls -->
+                    <div class="flex flex-wrap gap-2">
+                        <button v-for="cat in galleryCategories" :key="cat.id"
+                                @click="activeGalleryCat = cat.id"
+                                class="px-4 py-2 text-xs font-mono uppercase tracking-wider border rounded-xl transition-all duration-300"
+                                :class="activeGalleryCat === cat.id ? 'bg-red-600/10 border-red-500 text-red-400 font-bold' : 'bg-neutral-950/40 border-neutral-800/80 text-neutral-400 hover:text-white hover:border-neutral-700'">
+                            {{ cat.name }}
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 12-Image Masonry/Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <div v-for="imgItem in filteredGallery" :key="imgItem.id"
+                         @click="openLightbox(imgItem)"
+                         class="group relative overflow-hidden rounded-2xl border border-neutral-800/80 bg-neutral-950/60 h-72 cursor-pointer transition-all duration-500 hover:border-red-500/40 hover:-translate-y-1">
+                        
+                        <!-- Image Element -->
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-110"
+                             :style="{ backgroundImage: 'url(' + imgItem.image + ')' }">
+                        </div>
+                        
+                        <!-- Premium Gradient Overlay -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-300"></div>
+                        
+                        <!-- Content Details -->
+                        <div class="absolute bottom-4 left-4 right-4 z-10 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                            <span class="px-2 py-0.5 bg-red-950/80 border border-red-500/20 text-[9px] uppercase font-mono text-red-400 rounded">
+                                {{ imgItem.categoryName }}
+                            </span>
+                            <h3 class="text-sm font-bold text-white font-serif mt-2 mb-1 group-hover:text-red-400 transition-colors">
+                                {{ imgItem.title }}
+                            </h3>
+                            <p class="text-[10px] text-neutral-400 line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-sans">
+                                {{ imgItem.desc }}
+                            </p>
+                        </div>
+
+                        <!-- Hover Visual Ring -->
+                        <div class="absolute inset-2 border border-red-500/0 rounded-xl pointer-events-none group-hover:border-red-500/20 transition-all duration-500"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-neutral-900/30 border border-neutral-800/40 rounded-[2rem] p-8 backdrop-blur-md glow-border mt-2">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="text-xs font-semibold tracking-widest text-red-400 uppercase font-mono">Transparent Investment</span>
+                    <h2 class="text-3xl font-serif mt-2 mb-4">Design Packages & Custom Collections</h2>
+                    <p class="text-neutral-400 text-sm">
+                        From simplified elegant structures to comprehensive custom-tailored masterpieces, select the perfect framework for your special event.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div v-for="pkg in packages" :key="pkg.id" 
+                         class="bg-neutral-950/80 border border-neutral-800/60 hover:border-red-500/50 rounded-3xl p-6 flex flex-col justify-between transition-all duration-500 relative group overflow-hidden">
+                        <div class="absolute -right-12 -top-12 w-32 h-32 bg-red-600/5 rounded-full blur-2xl group-hover:bg-red-600/15 transition-all duration-500"></div>
+                        
+                        <div class="space-y-4 relative z-10">
+                            <div class="flex justify-between items-start">
+                                <h4 class="text-xl font-serif font-bold text-neutral-100">{{ pkg.title }}</h4>
+                                <span class="text-xs px-2.5 py-1 bg-red-950/40 border border-red-500/20 text-red-400 font-mono rounded-full">{{ pkg.tierLabel }}</span>
+                            </div>
+                            <p class="text-xs text-neutral-400 min-h-[3rem]">{{ pkg.description }}</p>
+                            
+                            <div class="pt-4 border-t border-neutral-900">
+                                <div class="text-2xl font-serif text-white font-bold">
+                                    {{ pkg.price }} <span class="text-xs font-sans text-neutral-500 font-normal">Starting from</span>
+                                </div>
+                            </div>
+
+                            <ul class="space-y-2 pt-4">
+                                <li v-for="feat in pkg.features" :key="feat" class="text-xs text-neutral-300 flex items-center gap-2">
+                                    <i class="fas fa-check-circle text-red-500 text-[10px]"></i>
+                                    {{ feat }}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <button @click="selectPackage(pkg)" class="w-full mt-6 py-3 bg-neutral-900 hover:bg-red-600 border border-neutral-800 hover:border-red-500 text-xs text-neutral-200 hover:text-white uppercase tracking-wider font-semibold rounded-xl transition-all duration-300">
+                            Configure This Tier
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="contact" class="bg-neutral-900/30 border border-neutral-800/40 rounded-[2rem] p-8 backdrop-blur-md glow-border mt-4">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                    
+                    <!-- Left Column: Studio Contact Coordinates & Live Google Map -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div>
+                            <span class="text-xs font-semibold tracking-widest text-red-400 uppercase font-mono">Connect Instantly</span>
+                            <h2 class="text-3xl font-serif mt-2 text-white">Let's Create Magic</h2>
+                            <p class="text-neutral-400 text-sm mt-3 leading-relaxed">
+                                Ready to conceptualize your space? Visit our luxury showroom atelier in Kigali, drop us an email, or complete the visual blueprint brief.
+                            </p>
+                        </div>
+
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-4 p-4 bg-neutral-950/40 rounded-2xl border border-neutral-900/60">
+                                <div class="w-10 h-10 rounded-xl bg-red-950/30 border border-red-500/25 flex items-center justify-center text-red-400 shrink-0">
+                                    <i class="fas fa-map-marked-alt text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-[10px] uppercase font-mono tracking-widest text-neutral-400">Atelier Studio</h4>
+                                    <p class="text-xs text-white mt-0.5">Kimironko Road, Kigali, Rwanda</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 bg-neutral-950/40 rounded-2xl border border-neutral-900/60">
+                                <div class="w-10 h-10 rounded-xl bg-red-950/30 border border-red-500/25 flex items-center justify-center text-red-400 shrink-0">
+                                    <i class="fas fa-phone-alt text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-[10px] uppercase font-mono tracking-widest text-neutral-400">Direct Inquiries</h4>
+                                    <p class="text-xs text-white mt-0.5 hover:text-red-400 transition-colors">
+                                        <a href="tel:+250788549800">+250 788 549 800</a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4 p-4 bg-neutral-950/40 rounded-2xl border border-neutral-900/60">
+                                <div class="w-10 h-10 rounded-xl bg-red-950/30 border border-red-500/25 flex items-center justify-center text-red-400 shrink-0">
+                                    <i class="fas fa-envelope text-sm"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-[10px] uppercase font-mono tracking-widest text-neutral-400">Atelier Email</h4>
+                                    <p class="text-xs text-white mt-0.5 hover:text-red-400 transition-colors">
+                                        <a href="mailto:info@pinkpetalsdecor.rw">info@pinkpetalsdecor.rw</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mini Interactive Location Portal -->
+                        <div class="rounded-2xl overflow-hidden border border-neutral-800/60 h-44 relative">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.5113519878664!2d30.059091999999996!3d-1.9485108!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19dca5b1cb1f616f%3A0xc486270196c8a35f!2sPINK%20PETALS%20DECOR%20LTD!5e0!3m2!1snl!2snl!4v1776366191585!5m2!1snl!2snl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Premium Inline Event Brief Builder -->
+                    <div class="lg:col-span-7 bg-neutral-950/50 border border-neutral-800/60 rounded-[1.8rem] p-6 md:p-8 relative overflow-hidden">
+                        <div class="absolute -right-20 -top-20 w-48 h-48 rounded-full blur-[100px] opacity-10 bg-red-600"></div>
+                        
+                        <h3 class="text-lg font-serif text-white mb-6 flex items-center gap-2">
+                            <i class="fas fa-paper-plane text-red-500 text-sm"></i>
+                            Inline Project Brief Builder
+                        </h3>
+
+                        <form v-if="!inlineSubmitted" @submit.prevent="submitInlineForm" class="space-y-4 relative z-10">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <label class="text-[10px] uppercase font-semibold text-neutral-400 font-mono">Your Name *</label>
+                                    <input v-model="inlineData.name" type="text" required placeholder="Aline Uwase"
+                                           class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-red-500 transition-colors text-white">
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-[10px] uppercase font-semibold text-neutral-400 font-mono">Phone Number *</label>
+                                    <input v-model="inlineData.phone" type="tel" required placeholder="0788 000 000"
+                                           class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-red-500 transition-colors text-white">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="space-y-1">
+                                    <label class="text-[10px] uppercase font-semibold text-neutral-400 font-mono">Event Type *</label>
+                                    <select v-model="inlineData.eventType" required
+                                            class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-red-500 transition-colors appearance-none text-neutral-300">
+                                        <option value="wedding">Grand Wedding</option>
+                                        <option value="gusaba">Gusaba Ceremony</option>
+                                        <option value="reception">Reception Styling</option>
+                                        <option value="corporate">Corporate / Gala</option>
+                                    </select>
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-[10px] uppercase font-semibold text-neutral-400 font-mono">Preferred Tier *</label>
+                                    <select v-model="inlineData.tier" required
+                                            class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-red-500 transition-colors appearance-none text-neutral-300">
+                                        <option value="essential">Essential Collection</option>
+                                        <option value="signature">Signature Collection</option>
+                                        <option value="atelier">Atelier (Custom Design)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="space-y-1">
+                                <label class="text-[10px] uppercase font-semibold text-neutral-400 font-mono">Visual Blueprint & Details</label>
+                                <textarea v-model="inlineData.message" rows="4" placeholder="Share your theme colors, guest size, and layout vision..."
+                                          class="w-full bg-neutral-900 border border-neutral-800 rounded-xl px-4 py-3 text-xs focus:outline-none focus:border-red-500 transition-colors resize-none text-white"></textarea>
+                                <span class="text-[9px] text-neutral-500 block text-right font-mono">Live Sync Enabled with Management Panel</span>
+                            </div>
+
+                            <button type="submit" class="w-full py-4 text-xs font-bold uppercase tracking-wider rounded-xl transition-all duration-300 shadow-lg flex items-center justify-center gap-2"
+                                    :class="[currentTheme.btnFill, inlineSubmitting ? 'opacity-80 cursor-not-allowed' : '']">
+                                <span v-if="inlineSubmitting" class="flex items-center gap-2">
+                                    <svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Registering Brief...
+                                </span>
+                                <span v-else class="flex items-center gap-2">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Submit Event Brief
+                                </span>
+                            </button>
+                        </form>
+
+                        <div v-else class="text-center py-12 space-y-4 relative z-10">
+                            <div class="w-16 h-16 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 flex items-center justify-center text-2xl mx-auto shadow-lg">
+                                <i class="fas fa-check animate-bounce"></i>
+                            </div>
+                            <div class="space-y-2">
+                                <h4 class="text-xl font-bold text-white font-serif">Brief Transmitted</h4>
+                                <p class="text-xs text-neutral-400 max-w-sm mx-auto">
+                                    Thank you, {{ inlineData.name }}. Your styling consultation package has been compiled. You can validate secure credentials under "Admin Access" to approve your lead state!
+                                </p>
+                            </div>
+                            <button @click="resetInlineForm" class="px-6 py-2.5 bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-white rounded-xl text-xs font-semibold transition-colors flex items-center gap-2 mx-auto">
+                                <i class="fas fa-redo"></i>
+                                Submit Another Brief
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Minimal Grid Footer -->
+            <footer class="w-full text-center py-8 text-neutral-600 text-xs space-y-2 border-t border-neutral-900 mt-4">
+                <p>&copy; 2026 Pink Petals Decor Ltd. Developed with highly immersive interactive modules.</p>
+                <div class="flex justify-center gap-6">
+                    <a href="https://www.instagram.com/pink_petals_decor_ltd/" target="_blank" class="hover:text-neutral-400 transition-colors flex items-center gap-1">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                    <a href="#" class="hover:text-neutral-400 transition-colors flex items-center gap-1">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </a>
+                    <a href="https://wa.me/250788549800" target="_blank" class="hover:text-neutral-400 transition-colors flex items-center gap-1">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Direct
+                    </a>
+                </div>
+            </footer>
+        </div>
+
+        <!-- Immersive Lightbox Modal -->
+        <div v-if="lightboxOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div @click="closeLightbox" class="absolute inset-0 bg-neutral-950/95 backdrop-blur-md transition-all duration-300"></div>
+            
+            <div class="relative bg-neutral-900/60 border border-neutral-800/80 rounded-3xl overflow-hidden max-w-4xl w-full z-10 shadow-2xl flex flex-col md:flex-row">
+                
+                <!-- Left Hand Side: Picture Layout -->
+                <div class="md:w-3/5 h-80 md:h-[500px] relative bg-black flex items-center justify-center">
+                    <img :src="activeLightboxItem.image" class="w-full h-full object-cover" :alt="activeLightboxItem.title">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                </div>
+
+                <!-- Right Hand Side: Content & Action Coordinates -->
+                <div class="md:w-2/5 p-8 flex flex-col justify-between bg-neutral-900/90 backdrop-blur-sm">
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-start">
+                            <span class="px-2.5 py-1 bg-red-950/60 border border-red-500/20 text-xs text-red-400 rounded-xl font-mono uppercase">
+                                {{ activeLightboxItem.categoryName }}
+                            </span>
+                            <button @click="closeLightbox" class="w-8 h-8 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white flex items-center justify-center transition-all">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <h3 class="text-3xl font-serif text-white leading-tight">
+                            {{ activeLightboxItem.title }}
+                        </h3>
+                        <p class="text-sm text-neutral-400 leading-relaxed font-sans">
+                            {{ activeLightboxItem.desc }}
+                        </p>
+                    </div>
+
+                    <div class="pt-6 border-t border-neutral-800/60 space-y-3">
+                        <p class="text-xs text-neutral-500 font-mono">Love this specific styling direction?</p>
+                        <button @click="chooseLightboxSetup" class="w-full py-3 bg-red-600 hover:bg-red-500 text-white font-bold uppercase tracking-wider text-xs rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg shadow-red-600/15">
+                            <i class="fas fa-calendar-alt"></i>
+                            Request Setup Style
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="py-20 text-center text-pink-200 text-xs tracking-[0.6em] uppercase">
-        Keith & Tresor &bull; Perpetual Spring &bull; 2024
-    </footer>
+        <!-- Admin Access Terminal Modal -->
+        <div v-if="adminModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div @click="adminModalOpen = false" class="absolute inset-0 bg-neutral-950/85 backdrop-blur-md transition-all"></div>
+            
+            <div class="bg-neutral-900 border border-neutral-800 rounded-[2.5rem] p-8 max-w-md w-full relative z-10 shadow-2xl shadow-black overflow-hidden animate-fade-in">
+                <div class="absolute -right-20 -top-20 w-48 h-48 rounded-full blur-[100px] opacity-10 bg-red-600"></div>
+                
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <span class="text-xs font-semibold tracking-widest text-red-400 uppercase font-mono flex items-center gap-1.5">
+                            <i class="fas fa-lock"></i>
+                            Staff Access Terminal
+                        </span>
+                        <h3 class="text-2xl font-bold text-white mt-1 font-serif">Credential Validation</h3>
+                    </div>
+                    <button @click="adminModalOpen = false" class="w-8 h-8 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white flex items-center justify-center transition-colors">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
 
-    <!-- Success Overlay -->
-    <div id="love-overlay" class="fixed inset-0 z-[200] hidden items-center justify-center p-6 bg-pink-100/90 backdrop-blur-xl">
-        <div class="text-center max-w-lg reveal active">
-            <div class="text-6xl mb-8">🌸</div>
-            <h3 class="text-4xl serif italic text-pink-900 mb-6">It is a Promise.</h3>
-            <p class="text-pink-800/60 leading-relaxed serif italic text-lg mb-12">
-                "Our story continues with every falling petal. I am yours, now and always."
-            </p>
-            <button onclick="closeOverlay()" class="text-pink-400 uppercase text-[10px] tracking-[0.4em] border-b border-pink-200 pb-2">Return to our garden</button>
+                <form @submit.prevent="submitAdminLogin" class="space-y-4 relative z-10">
+                    <div class="space-y-1">
+                        <label class="text-[10px] uppercase font-semibold text-neutral-400 font-mono">Secure Username</label>
+                        <input v-model="adminCredentials.username" type="text" required placeholder="admin"
+                               class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-red-500 transition-colors text-white">
+                    </div>
+                    
+                    <div class="space-y-1">
+                        <label class="text-[10px] uppercase font-semibold text-neutral-400 font-mono">Security Token</label>
+                        <input v-model="adminCredentials.password" type="password" required placeholder="kigali2026"
+                               class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-red-500 transition-colors text-white">
+                    </div>
+
+                    <div v-if="adminError" class="text-xs text-red-500 font-mono flex items-center gap-1.5">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        {{ adminError }}
+                    </div>
+
+                    <button type="submit" class="w-full py-4 text-xs font-bold uppercase tracking-wider bg-red-600 hover:bg-red-500 text-white rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 shadow-red-600/10">
+                        <i class="fas fa-key"></i>
+                        Validate & Enter Terminal
+                    </button>
+                </form>
+            </div>
         </div>
+
+        <!-- Admin Dashboard Panel Drawer -->
+        <div v-if="adminDashboardOpen" class="fixed inset-0 z-50 flex items-center justify-end">
+            <!-- Modal Backdrop -->
+            <div @click="adminDashboardOpen = false" class="absolute inset-0 bg-neutral-950/80 backdrop-blur-sm transition-all"></div>
+            
+            <!-- Dashboard Main Container -->
+            <div class="bg-neutral-900 border-l border-neutral-800 h-full max-w-4xl w-full relative z-10 shadow-2xl flex flex-col justify-between overflow-hidden">
+                
+                <!-- Drawer Header -->
+                <div class="p-6 border-b border-neutral-800 flex justify-between items-center bg-neutral-900/60 backdrop-blur-md">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-red-600 to-rose-700 flex items-center justify-center shadow-lg shadow-red-600/20 text-white">
+                            <i class="fas fa-chart-line text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold font-serif text-white">Pink Petals Control Panel</h3>
+                            <p class="text-[10px] text-neutral-400 font-mono uppercase tracking-widest">Kigali Luxury Management Suite</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-2">
+                        <button @click="logoutAdmin" class="px-3 py-1.5 border border-red-500/20 text-red-400 hover:bg-red-950/40 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all">
+                            Log out
+                        </button>
+                        <button @click="adminDashboardOpen = false" class="w-10 h-10 rounded-xl bg-neutral-800 hover:bg-neutral-700 text-neutral-300 flex items-center justify-center transition-all">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Dashboard Content Area (Tabbed) -->
+                <div class="flex-1 overflow-y-auto p-6 space-y-6">
+                    
+                    <!-- Analytics Header Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="bg-neutral-950/50 border border-neutral-800 rounded-2xl p-4 flex justify-between items-center">
+                            <div>
+                                <span class="text-[10px] font-mono text-neutral-500 uppercase">Interactive Leads</span>
+                                <div class="text-2xl font-serif font-bold text-white mt-1">{{ inquiries.length }} Active</div>
+                            </div>
+                            <div class="w-10 h-10 rounded-xl bg-red-900/20 text-red-400 flex items-center justify-center text-sm">
+                                <i class="fas fa-envelope-open-text"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-neutral-950/50 border border-neutral-800 rounded-2xl p-4 flex justify-between items-center">
+                            <div>
+                                <span class="text-[10px] font-mono text-neutral-500 uppercase">Baseline Estimate</span>
+                                <div class="text-2xl font-serif font-bold text-emerald-400 mt-1">${{ estimatedTotalRevenue }}</div>
+                            </div>
+                            <div class="w-10 h-10 rounded-xl bg-emerald-950/20 text-emerald-400 flex items-center justify-center text-sm">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                        </div>
+
+                        <div class="bg-neutral-950/50 border border-neutral-800 rounded-2xl p-4 flex justify-between items-center">
+                            <div>
+                                <span class="text-[10px] font-mono text-neutral-500 uppercase">Selected Mode</span>
+                                <div class="text-2xl font-serif font-bold text-amber-400 mt-1">{{ currentTheme.name }}</div>
+                            </div>
+                            <div class="w-10 h-10 rounded-xl bg-amber-950/20 text-amber-400 flex items-center justify-center text-sm">
+                                <i class="fas fa-sliders-h"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabs Selector -->
+                    <div class="flex border-b border-neutral-800">
+                        <button @click="activeAdminTab = 'leads'" 
+                                class="px-5 py-3 text-xs font-mono uppercase tracking-wider border-b-2 font-semibold transition-all"
+                                :class="activeAdminTab === 'leads' ? 'border-red-500 text-white' : 'border-transparent text-neutral-400 hover:text-neutral-200'">
+                            Quotation Enquiries ({{ inquiries.length }})
+                        </button>
+                        <button @click="activeAdminTab = 'pricing'" 
+                                class="px-5 py-3 text-xs font-mono uppercase tracking-wider border-b-2 font-semibold transition-all"
+                                :class="activeAdminTab === 'pricing' ? 'border-red-500 text-white' : 'border-transparent text-neutral-400 hover:text-neutral-200'">
+                            Price Control Panel
+                        </button>
+                    </div>
+
+                    <!-- Tab 1: Live Lead Submissions -->
+                    <div v-if="activeAdminTab === 'leads'" class="space-y-4">
+                        <div v-if="inquiries.length === 0" class="text-center py-12 text-neutral-500 text-xs font-mono">
+                            No user inquiries are currently available. Submit a request on the main booking section!
+                        </div>
+                        
+                        <div v-for="inq in inquiries" :key="inq.id" 
+                             class="bg-neutral-950/60 border rounded-2xl p-5 transition-all duration-300"
+                             :class="inq.status === 'Approved' ? 'border-emerald-500/20 hover:border-emerald-500/35 bg-emerald-950/5' : inq.status === 'Declined' ? 'border-red-900/40 hover:border-red-900/60 bg-red-950/5' : 'border-neutral-800 hover:border-neutral-700 bg-neutral-950/80'">
+                            
+                            <div class="flex flex-wrap justify-between items-start gap-2 mb-3">
+                                <div>
+                                    <h4 class="text-base font-bold text-white font-serif">{{ inq.name }}</h4>
+                                    <span class="text-[10px] text-neutral-500 font-mono block mt-0.5">Submitted at {{ inq.timestamp }}</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] font-mono px-2 py-0.5 rounded"
+                                          :class="inq.status === 'Approved' ? 'bg-emerald-500/10 text-emerald-400' : inq.status === 'Declined' ? 'bg-red-500/10 text-red-400' : 'bg-neutral-800 text-neutral-400'">
+                                        {{ inq.status }}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 my-4 bg-neutral-900/40 p-3 rounded-xl border border-neutral-800/40 text-xs">
+                                <div>
+                                    <span class="text-neutral-500 text-[10px] font-mono">Phone</span>
+                                    <p class="font-bold text-neutral-200 mt-0.5">{{ inq.phone }}</p>
+                                </div>
+                                <div>
+                                    <span class="text-neutral-500 text-[10px] font-mono">Category</span>
+                                    <p class="font-bold text-neutral-200 mt-0.5 uppercase">{{ inq.eventType }}</p>
+                                </div>
+                                <div>
+                                    <span class="text-neutral-500 text-[10px] font-mono">Design Tier</span>
+                                    <p class="font-bold text-neutral-200 mt-0.5 uppercase">{{ inq.tier }}</p>
+                                </div>
+                            </div>
+
+                            <p class="text-xs text-neutral-400 bg-neutral-950 p-3.5 rounded-xl border border-neutral-800/30 font-sans italic">
+                                "{{ inq.message || 'No additional vision notes shared.' }}"
+                            </p>
+
+                            <div class="flex justify-end gap-2 mt-4 pt-3 border-t border-neutral-900">
+                                <button v-if="inq.status === 'Pending'" @click="updateLeadStatus(inq.id, 'Declined')" 
+                                        class="px-3 py-1.5 text-[10px] font-mono uppercase bg-red-950/40 hover:bg-red-900/30 border border-red-500/20 text-red-400 rounded-lg transition-all">
+                                    Decline Lead
+                                </button>
+                                <button v-if="inq.status === 'Pending'" @click="updateLeadStatus(inq.id, 'Approved')" 
+                                        class="px-3 py-1.5 text-[10px] font-mono uppercase bg-emerald-950/40 hover:bg-emerald-900/30 border border-emerald-500/20 text-emerald-400 rounded-lg transition-all">
+                                    Approve Booking
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 2: Pricing Manager -->
+                    <div v-if="activeAdminTab === 'pricing'" class="space-y-6">
+                        <div class="p-4 bg-red-500/10 border border-red-500/20 rounded-2xl text-xs text-red-400">
+                            <strong>Note:</strong> Modifying baseline cost parameters will immediately shift display prices globally for end-users visiting your showroom frontend.
+                        </div>
+
+                        <div class="space-y-4">
+                            <div v-for="pkg in packages" :key="pkg.id" class="bg-neutral-950/60 border border-neutral-800 rounded-2xl p-5 flex flex-wrap justify-between items-center gap-4">
+                                <div>
+                                    <h4 class="text-base font-serif font-bold text-white">{{ pkg.title }}</h4>
+                                    <p class="text-[10px] text-neutral-500 font-mono mt-0.5">Tied to: {{ pkg.tierLabel }}</p>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-xs text-neutral-400 font-mono">Baseline Rate</span>
+                                    <input v-model="pkg.price" type="text" 
+                                           class="w-32 bg-neutral-950 border border-neutral-800 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-red-500 transition-colors text-white font-mono text-center">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Control Panel Footer -->
+                <div class="p-4 bg-neutral-950 border-t border-neutral-800 text-center text-[10px] text-neutral-600 font-mono flex justify-between px-6 items-center">
+                    <span>Authorized Session (Active)</span>
+                    <span>Pink Petals Terminal V2.6</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Connection / Client Quote Modal -->
+        <div v-if="contactModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div @click="closeContactModal" class="absolute inset-0 bg-neutral-950/80 backdrop-blur-md transition-all"></div>
+            
+            <div class="bg-neutral-900 border border-neutral-800 rounded-[2.5rem] p-8 max-w-lg w-full relative z-10 shadow-2xl shadow-black overflow-hidden animate-fade-in">
+                <div class="absolute -right-20 -top-20 w-48 h-48 rounded-full blur-[100px] opacity-20" :style="{ backgroundColor: currentTheme.glowColor1 }"></div>
+                
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <span class="text-xs font-semibold tracking-widest text-red-400 uppercase font-mono flex items-center gap-1.5">
+                            <i class="fas fa-calendar-alt"></i>
+                            Secure Your Date
+                        </span>
+                        <h3 class="text-2xl font-bold text-white mt-1 font-serif">Request Premium Quote</h3>
+                    </div>
+                    <button @click="closeContactModal" class="w-8 h-8 rounded-full bg-neutral-800 hover:bg-neutral-700 text-neutral-400 hover:text-white flex items-center justify-center transition-colors">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <form v-if="!formSubmitted" @submit.prevent="submitForm" class="space-y-4 relative z-10">
+                    <div class="space-y-1">
+                        <label class="text-[10px] uppercase font-semibold text-neutral-400 font-mono flex items-center gap-1">
+                            <i class="fas fa-user text-red-500 text-[8px]"></i>
+                            Your Name *
+                        </label>
+                        <input v-model="formData.name" type="text" required placeholder="Aline Uwase"
+                               class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-red-500 transition-colors text-white">
+                    </div>
+                    
+                    <div class="space-y-1">
+                        <label class="text-[10px] uppercase font-semibold text-neutral-400 font-mono flex items-center gap-1">
+                            <i class="fas fa-phone text-red-500 text-[8px]"></i>
+                            Phone Number *
+                        </label>
+                        <input v-model="formData.phone" type="tel" required placeholder="0788 000 000"
+                               class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-red-500 transition-colors text-white">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-[10px] uppercase font-semibold text-neutral-400 font-mono flex items-center gap-1">
+                                <i class="fas fa-glass-cheers text-red-500 text-[8px]"></i>
+                                Event Type *
+                            </label>
+                            <select v-model="formData.eventType" required
+                                    class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-red-500 transition-colors appearance-none text-neutral-300">
+                                <option value="wedding">Grand Wedding</option>
+                                <option value="gusaba">Gusaba Ceremony</option>
+                                <option value="reception">Reception Styling</option>
+                                <option value="corporate">Corporate / Gala</option>
+                            </select>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-[10px] uppercase font-semibold text-neutral-400 font-mono flex items-center gap-1">
+                                <i class="fas fa-cubes text-red-500 text-[8px]"></i>
+                                Preferred Tier *
+                            </label>
+                            <select v-model="formData.tier" required
+                                    class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-red-500 transition-colors appearance-none text-neutral-300">
+                                <option value="essential">Essential Collection</option>
+                                <option value="signature">Signature Collection</option>
+                                <option value="atelier">Atelier (Custom Design)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="space-y-1">
+                        <label class="text-[10px] uppercase font-semibold text-neutral-400 font-mono flex items-center gap-1">
+                            <i class="fas fa-comment-dots text-red-500 text-[8px]"></i>
+                            Vision Details & Special Notes
+                        </label>
+                        <textarea v-model="formData.message" rows="3" placeholder="Share your colors, layout preferences, or specific venue details..."
+                                  class="w-full bg-neutral-950 border border-neutral-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-red-500 transition-colors resize-none text-white"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 text-xs font-bold uppercase tracking-wider rounded-xl transition-all duration-300 shadow-lg flex items-center justify-center gap-2"
+                            :class="[currentTheme.btnFill, formSubmitting ? 'opacity-80 cursor-not-allowed' : '']">
+                        <span v-if="formSubmitting" class="flex items-center gap-2">
+                            <svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Calculating Quote...
+                        </span>
+                        <span v-else class="flex items-center gap-2">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit Quotation Request
+                        </span>
+                    </button>
+                </form>
+
+                <!-- Success State view -->
+                <div v-else class="text-center py-8 space-y-4 relative z-10">
+                    <div class="w-16 h-16 rounded-full bg-red-500/10 border border-red-500/20 text-red-400 flex items-center justify-center text-2xl mx-auto shadow-lg">
+                        <i class="fas fa-check animate-bounce"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h4 class="text-xl font-bold text-white font-serif">Inquiry Safely Received</h4>
+                        <p class="text-sm text-neutral-400 max-w-sm mx-auto">
+                            Thank you, {{ formData.name }}. Your wedding or gala inquiry has been securely recorded. 
+                            <span class="block text-xs text-red-400 mt-2 font-mono">You can now validate with admin access to view your submitted lead!</span>
+                        </p>
+                    </div>
+                    <button @click="resetForm" class="px-6 py-2.5 bg-neutral-800 hover:bg-neutral-700 text-white rounded-xl text-xs font-semibold transition-colors flex items-center gap-2 mx-auto">
+                        <i class="fas fa-redo"></i>
+                        Send Another Inquiry
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
-        // Petal Generator
-        function createPetals() {
-            const container = document.getElementById('petal-container');
-            const petalCount = 30;
+        const { createApp, ref, computed, onMounted, onUnmounted } = Vue;
 
-            for (let i = 0; i < petalCount; i++) {
-                const petal = document.createElement('div');
-                petal.className = 'petal';
+        createApp({
+            setup() {
+                // Live Kigali Time Track (GMT+2)
+                const kigaliTime = ref('');
+                const toasts = ref([]);
                 
-                // Randomize appearance
-                const size = Math.random() * 15 + 10 + 'px';
-                petal.style.width = size;
-                petal.style.height = size;
-                petal.style.left = Math.random() * 100 + 'vw';
-                petal.style.animationDuration = Math.random() * 5 + 5 + 's';
-                petal.style.animationDelay = Math.random() * 5 + 's';
-                
-                // Random shades of pink
-                const colors = ['#ffc1e3', '#f8bbd0', '#fce4ec', '#f48fb1'];
-                petal.style.background = colors[Math.floor(Math.random() * colors.length)];
+                const updateKigaliTime = () => {
+                    const options = {
+                        timeZone: 'Africa/Kigali',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                        hour12: true
+                    };
+                    kigaliTime.value = new Intl.DateTimeFormat('en-US', options).format(new Date());
+                };
 
-                container.appendChild(petal);
+                const triggerToast = (message) => {
+                    const id = Date.now();
+                    toasts.value.push({ id, message });
+                    setTimeout(() => {
+                        toasts.value = toasts.value.filter(t => t.id !== id);
+                    }, 4000);
+                };
+
+                const currentThemeKey = ref('crimson');
+                const themes = ref({
+                    crimson: {
+                        name: 'Crimson Luxury',
+                        bgControl: 'bg-red-700',
+                        glowColor1: '#4a0812',
+                        glowColor2: '#2b0004',
+                        brandGradient: 'from-red-600 to-rose-700 text-white',
+                        btnFill: 'bg-red-600 hover:bg-red-500 text-white shadow-red-600/20',
+                        accentText: 'text-red-400'
+                    },
+                    royal: {
+                        name: 'Royal Gold & Scarlet',
+                        bgControl: 'bg-amber-600',
+                        glowColor1: '#4a3208',
+                        glowColor2: '#5c1010',
+                        brandGradient: 'from-amber-500 to-red-600 text-neutral-950',
+                        btnFill: 'bg-amber-500 hover:bg-amber-400 text-neutral-950 shadow-amber-500/20',
+                        accentText: 'text-amber-400'
+                    },
+                    velvet: {
+                        name: 'Wine Burgundy',
+                        bgControl: 'bg-rose-900',
+                        glowColor1: '#310008',
+                        glowColor2: '#1b0004',
+                        brandGradient: 'from-rose-800 to-red-950 text-white',
+                        btnFill: 'bg-rose-700 hover:bg-rose-600 text-white shadow-rose-600/20',
+                        accentText: 'text-rose-400'
+                    }
+                });
+
+                const currentTheme = computed(() => themes.value[currentThemeKey.value]);
+                
+                const changeTheme = (key) => {
+                    currentThemeKey.value = key;
+                    triggerToast(`Switched ambient display modes to ${themes.value[key].name}.`);
+                };
+
+                // Design Pillars Config
+                const specPills = ref([
+                    { name: 'Grand Weddings', color: '#ef4444' },
+                    { name: 'Gusaba Setups', color: '#fbbf24' },
+                    { name: 'Floral Couture', color: '#f43f5e' },
+                    { name: 'Ambient Lighting', color: '#38bdf8' }
+                ]);
+
+                const selectedSpec = ref(null);
+
+                const toggleSpecFilter = (specName) => {
+                    if (selectedSpec.value === specName) {
+                        selectedSpec.value = null; 
+                    } else {
+                        selectedSpec.value = specName;
+                    }
+                    activeProjectIndex.value = 0; 
+                };
+
+                // 12 Professional Curated Event Images for Gallery
+                const galleryCategories = ref([
+                    { id: 'all', name: 'All Curation' },
+                    { id: 'weddings', name: 'Grand Weddings' },
+                    { id: 'gusaba', name: 'Gusaba Setups' },
+                    { id: 'tableware', name: 'Tableware & Styling' },
+                    { id: 'florals', name: 'Floral Couture' }
+                ]);
+
+                const activeGalleryCat = ref('all');
+
+                const galleryItems = ref([
+                    {
+                        id: 1,
+                        title: 'The Royal Canopy Stage',
+                        category: 'weddings',
+                        categoryName: 'Grand Weddings',
+                        desc: 'Bespoke high-contrast grand reception drapes paired with imported crimson velvet panels and ivory floorings.',
+                        image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=800'
+                    },
+                    {
+                        id: 2,
+                        title: 'Symmetrical Gusaba Geometry',
+                        category: 'gusaba',
+                        categoryName: 'Gusaba Setups',
+                        desc: 'Traditional cultural backdrops reimagined using crisp white textures and cascading crimson roses.',
+                        image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=800'
+                    },
+                    {
+                        id: 3,
+                        title: 'Imperial Mirrored Tablescapes',
+                        category: 'tableware',
+                        categoryName: 'Tableware & Styling',
+                        desc: 'Reflective mirror table setups topped with tall gold chandeliers, crimson runners, and fine crystal glassware.',
+                        image: 'https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=800'
+                    },
+                    {
+                        id: 4,
+                        title: 'Romance Path Pathway',
+                        category: 'weddings',
+                        categoryName: 'Grand Weddings',
+                        desc: 'Atmospheric ceremony paths featuring tiered candlelight, hanging white wisteria loops, and fresh rose trails.',
+                        image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800'
+                    },
+                    {
+                        id: 5,
+                        title: 'Tall Structural Pillars',
+                        category: 'florals',
+                        categoryName: 'Floral Couture',
+                        desc: 'Magnificent towering floral pedestals integrating lush scarlet roses and soft baby breath borders.',
+                        image: 'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&q=80&w=800'
+                    },
+                    {
+                        id: 6,
+                        title: 'Prestige Ring Arch',
+                        category: 'weddings',
+                        categoryName: 'Grand Weddings',
+                        desc: 'An immersive 360-degree circular floral arch designed for elegant vow exchanges and sweetheart backdrops.',
+                        image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=80&w=800'
+                    },
+                    {
+                        id: 7,
+                        title: 'The Hand-Tied Royal Bouquet',
+                        category: 'florals',
+                        categoryName: 'Floral Couture',
+                        desc: 'Luxury bridal cascade bouquet made from premium red velvet roses and pristine white orchids.',
+                        image: 'https://images.unsplash.com/photo-1522336572468-97b06e8ef143?auto=format&fit=crop&q=80&w=800'
+                    },
+                    {
+                        id: 8,
+                        title: 'Crystal Chandelier Ceiling',
+                        category: 'tableware',
+                        categoryName: 'Tableware & Styling',
+                        desc: 'Grand luxury ballroom ceiling setups using suspended glass crystals, gold rings, and deep red velvet sails.',
+                        image: 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&q=80&w=800'
+                    },
+                    {
+                        id: 9,
+                        title: 'Intimate Candlelit Sweetheart',
+                        category: 'tableware',
+                        categoryName: 'Tableware & Styling',
+                        desc: 'Sweetheart table configurations decorated with dense crimson rose bushes and golden votives.',
+                        image: 'https://images.unsplash.com/photo-1535254973040-607b474cb50d?auto=format&fit=crop&q=80&w=800'
+                    },
+                    {
+                        id: 10,
+                        title: 'The Royal Lounge Seating',
+                        category: 'weddings',
+                        categoryName: 'Grand Weddings',
+                        desc: 'Plush velvet seating arrays custom-placed within grand wedding stages to facilitate premium family portraits.',
+                        image: 'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&q=80&w=800'
+                    },
+                    {
+                        id: 11,
+                        title: 'Prestige Reception Entrance',
+                        category: 'gusaba',
+                        categoryName: 'Gusaba Setups',
+                        desc: 'Stunning arched foyer styling welcoming guests with custom cultural drapery and floral pathways.',
+                        image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?auto=format&fit=crop&q=80&w=800'
+                    },
+                    {
+                        id: 12,
+                        title: 'Sacred Traditional Accents',
+                        category: 'gusaba',
+                        categoryName: 'Gusaba Setups',
+                        desc: 'Traditionally styled gourds, custom baskets, and drapery accented by premium white rose installations.',
+                        image: 'https://images.unsplash.com/photo-1507504031003-b417219a0fde?auto=format&fit=crop&q=80&w=800'
+                    }
+                ]);
+
+                // Filtered Gallery Computed
+                const filteredGallery = computed(() => {
+                    if (activeGalleryCat.value === 'all') return galleryItems.value;
+                    return galleryItems.value.filter(item => item.category === activeGalleryCat.value);
+                });
+
+                // Lightbox States
+                const lightboxOpen = ref(false);
+                const activeLightboxItem = ref(null);
+
+                const openLightbox = (item) => {
+                    activeLightboxItem.value = item;
+                    lightboxOpen.value = true;
+                };
+
+                const closeLightbox = () => {
+                    lightboxOpen.value = false;
+                    activeLightboxItem.value = null;
+                };
+
+                const chooseLightboxSetup = () => {
+                    if (activeLightboxItem.value) {
+                        formData.value.message = `I am interested in reproducing the specific setup style of: "${activeLightboxItem.value.title}" (${activeLightboxItem.value.categoryName})`;
+                        closeLightbox();
+                        openContactModal();
+                        triggerToast(`Style selection: "${activeLightboxItem.value.title}" prefilled in configuration.`);
+                    }
+                };
+
+                // Event Packages
+                const packages = ref([
+                    {
+                        id: 'essential',
+                        title: 'Essential Collection',
+                        tierLabel: 'Silver',
+                        price: '$1,500',
+                        description: 'A gorgeous, streamlined aesthetic perfect for elegant setups demanding premium design at a minimal scope.',
+                        features: [
+                            'Main Backdrop with Elegant Drapery',
+                            'Signature Red & White Silk Florals',
+                            'Premium Round-Table Settings (Up to 100 Guests)',
+                            'Ambient Up-Lighting & Basic Spotlighting',
+                            'On-site Setup and Removal Crew'
+                        ]
+                    },
+                    {
+                        id: 'signature',
+                        title: 'Signature Collection',
+                        tierLabel: 'Gold',
+                        price: '$3,800',
+                        description: 'Our highly recommended tier, merging rich imported fabrics, intricate custom floral couture, and detailed stage installations.',
+                        features: [
+                            'Custom Designed Dynamic Backdrop Panels',
+                            'Heavy Fresh Crimson Rose arrangements',
+                            'Mirrored Glass Tableware (Up to 250 Guests)',
+                            'Comprehensive Mood Lighting & Custom Gobos',
+                            'Complete Gusaba or Reception Stage Styling'
+                        ]
+                    },
+                    {
+                        id: 'atelier',
+                        title: 'Atelier (Custom Design)',
+                        tierLabel: 'Platinum',
+                        price: '$7,500',
+                        description: 'A completely bespoke visual plan curated directly with our Lead Architect, integrating 3D visual mapping and exotic global florals.',
+                        features: [
+                            'Individually Tailored Architectural Stage Plans',
+                            'Exclusive Air-freighted Premium White Florals',
+                            'Immersive Venue Ceiling & Canopy Drapery',
+                            'Full Multi-tier Intelligent Production Lighting',
+                            'Unlimited Consultation & 3D Spatial Pre-renderings'
+                        ]
+                    }
+                ]);
+
+                const projects = ref([
+                    {
+                        title: 'The Crimson Ballroom Reception',
+                        description: 'A customized, ultra-premium event layout featuring heavy crimson velvet details, glistening crystal chandeliers, and rich floral setups tailored for luxury Kigali ballroom weddings.',
+                        tagline: 'Signature Ballroom Setup',
+                        tags: ['Grand Weddings', 'Floral Couture'],
+                        image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=600',
+                        bgPattern: 'radial-gradient(circle, rgba(196,30,58,0.3) 0%, transparent 70%)'
+                    },
+                    {
+                        title: 'Modern Cultural Gusaba Drapery',
+                        description: 'Fusing deep cultural traditions with architectural drapery. Features custom geometric backdrop panels and pristine white arrangements accented by rich scarlet florals.',
+                        tagline: 'Traditional & Authentic Curation',
+                        tags: ['Gusaba Setups', 'Floral Couture'],
+                        image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&q=80&w=600',
+                        bgPattern: 'radial-gradient(circle, rgba(239,68,68,0.2) 0%, transparent 70%)'
+                    },
+                    {
+                        title: 'Candlelight & Rose Canopy',
+                        description: 'A romantic dining experience lit by over two hundred floating candles. Highlighted by suspended white wisterias and deep red rose centerpieces on gold stands.',
+                        tagline: 'Intimate Ceremony Concept',
+                        tags: ['Grand Weddings', 'Ambient Lighting'],
+                        image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=600',
+                        bgPattern: 'radial-gradient(circle, rgba(56,189,248,0.25) 0%, transparent 70%)'
+                    },
+                    {
+                        title: 'Sleek Geometric Stage & Florals',
+                        description: 'A striking structural wedding stage layout implementing clean lines, mirrored glass steps, and spherical red floral couture sculptures.',
+                        tagline: 'Modern Architectural Styling',
+                        tags: ['Floral Couture', 'Ambient Lighting'],
+                        image: 'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&q=80&w=600',
+                        bgPattern: 'radial-gradient(circle, rgba(244,63,94,0.2) 0%, transparent 70%)'
+                    }
+                ]);
+
+                const activeProjectIndex = ref(0);
+
+                const filteredProjects = computed(() => {
+                    if (!selectedSpec.value) return projects.value;
+                    return projects.value.filter(proj => proj.tags.includes(selectedSpec.value));
+                });
+
+                const activeProject = computed(() => {
+                    if (filteredProjects.value.length === 0) {
+                        return {
+                            title: 'Project Query Unresolved',
+                            description: 'No matching setup filters currently selected. Toggle other design categories above.',
+                            tagline: 'No Matches Found',
+                            tags: [],
+                            image: '',
+                            bgPattern: 'transparent'
+                        };
+                    }
+                    return filteredProjects.value[activeProjectIndex.value] || filteredProjects.value[0];
+                });
+
+                const nextProject = () => {
+                    if (filteredProjects.value.length <= 1) return;
+                    activeProjectIndex.value = (activeProjectIndex.value + 1) % filteredProjects.value.length;
+                };
+
+                const prevProject = () => {
+                    if (filteredProjects.value.length <= 1) return;
+                    activeProjectIndex.value = (activeProjectIndex.value - 1 + filteredProjects.value.length) % filteredProjects.value.length;
+                };
+
+                const contactModalOpen = ref(false);
+                const formSubmitted = ref(false);
+                const formSubmitting = ref(false);
+                const formData = ref({
+                    name: '',
+                    phone: '',
+                    eventType: 'wedding',
+                    tier: 'signature',
+                    message: ''
+                });
+
+                const inlineSubmitted = ref(false);
+                const inlineSubmitting = ref(false);
+                const inlineData = ref({
+                    name: '',
+                    phone: '',
+                    eventType: 'wedding',
+                    tier: 'signature',
+                    message: ''
+                });
+
+                // Leads database (Simulated reactive data in memory)
+                const inquiries = ref([
+                    {
+                        id: 1,
+                        name: 'Sandrine Kamanzi',
+                        phone: '0788 543 210',
+                        eventType: 'wedding',
+                        tier: 'signature',
+                        message: 'Our wedding is at Serena Hotel Kigali, looking to have full cascading red rose floral arches.',
+                        timestamp: 'June 24, 2026, 09:30 AM',
+                        status: 'Pending'
+                    },
+                    {
+                        id: 2,
+                        name: 'Christian Nsenga',
+                        phone: '0789 112 334',
+                        eventType: 'gusaba',
+                        tier: 'essential',
+                        message: 'Looking for clean white backdrops with bold crimson geometry.',
+                        timestamp: 'June 23, 2026, 02:15 PM',
+                        status: 'Approved'
+                    }
+                ]);
+
+                // Admin states
+                const adminModalOpen = ref(false);
+                const adminDashboardOpen = ref(false);
+                const isAdminLoggedIn = ref(false);
+                const adminError = ref('');
+                const activeAdminTab = ref('leads');
+                const adminCredentials = ref({ username: '', password: '' });
+
+                const estimatedTotalRevenue = computed(() => {
+                    return inquiries.value
+                        .filter(i => i.status === 'Approved')
+                        .reduce((total, i) => {
+                            const found = packages.value.find(p => p.id === i.tier);
+                            if (found) {
+                                const numericPrice = parseInt(found.price.replace(/[^0-9]/g, ''), 10);
+                                return total + numericPrice;
+                            }
+                            return total;
+                        }, 0);
+                });
+
+                const openContactModal = () => {
+                    contactModalOpen.value = true;
+                };
+
+                const closeContactModal = () => {
+                    contactModalOpen.style.display = 'none'
+                };
+
+                const selectPackage = (pkg) => {
+                    formData.value.tier = pkg.id;
+                    openContactModal();
+                    triggerToast(`Pre-selected ${pkg.title} tier.`);
+                };
+
+                const submitForm = () => {
+                    formSubmitting.value = true;
+                    setTimeout(() => {
+                        formSubmitting.value = false;
+                        
+                        // Push to simulated database so the admin dashboard gets it instantly!
+                        const newInquiry = {
+                            id: Date.now(),
+                            name: formData.value.name,
+                            phone: formData.value.phone,
+                            eventType: formData.value.eventType,
+                            tier: formData.value.tier,
+                            message: formData.value.message,
+                            timestamp: new Date().toLocaleString(),
+                            status: 'Pending'
+                        };
+                        
+                        inquiries.value.unshift(newInquiry);
+                        formSubmitted.value = true;
+                        triggerToast('Quotation successfully recorded. Check out the Admin Portal to view!');
+                    }, 1500);
+                };
+
+                const resetForm = () => {
+                    formData.value = { name: '', phone: '', eventType: 'wedding', tier: 'signature', message: '' };
+                    formSubmitted.value = false;
+                };
+
+                const submitInlineForm = () => {
+                    inlineSubmitting.value = true;
+                    setTimeout(() => {
+                        inlineSubmitting.value = false;
+                        
+                        const newInquiry = {
+                            id: Date.now(),
+                            name: inlineData.value.name,
+                            phone: inlineData.value.phone,
+                            eventType: inlineData.value.eventType,
+                            tier: inlineData.value.tier,
+                            message: inlineData.value.message,
+                            timestamp: new Date().toLocaleString(),
+                            status: 'Pending'
+                        };
+                        
+                        inquiries.value.unshift(newInquiry);
+                        inlineSubmitted.value = true;
+                        triggerToast('Direct event brief recorded successfully!');
+                    }, 1500);
+                };
+
+                const resetInlineForm = () => {
+                    inlineData.value = { name: '', phone: '', eventType: 'wedding', tier: 'signature', message: '' };
+                    inlineSubmitted.value = false;
+                };
+
+                // Admin Terminal authentication
+                const submitAdminLogin = () => {
+                    if (adminCredentials.value.username === 'admin' && adminCredentials.value.password === 'kigali2026') {
+                        isAdminLoggedIn.value = true;
+                        adminError.value = '';
+                        adminModalOpen.value = false;
+                        adminDashboardOpen.value = true;
+                        triggerToast('Staff access credentials authenticated.');
+                    } else {
+                        adminError.value = 'Validation Failed. Invalid token / username combination.';
+                    }
+                };
+
+                const logoutAdmin = () => {
+                    isAdminLoggedIn.value = false;
+                    adminDashboardOpen.value = false;
+                    adminCredentials.value = { username: '', password: '' };
+                    triggerToast('Logged out of Management Suite successfully.');
+                };
+
+                const openAdminDashboard = () => {
+                    adminDashboardOpen.value = true;
+                };
+
+                const updateLeadStatus = (leadId, newStatus) => {
+                    const lead = inquiries.value.find(i => i.id === leadId);
+                    if (lead) {
+                        lead.status = newStatus;
+                        triggerToast(`Quotation status updated to ${newStatus}.`);
+                    }
+                };
+
+                let canvas, ctx;
+                let tables = [];
+                let mouseX = 0;
+                let mouseY = 0;
+                let isMouseOver = false;
+
+                const initCanvas = () => {
+                    canvas = document.getElementById('interactiveCanvas');
+                    if (!canvas) return;
+                    ctx = canvas.getContext('2d');
+                    resizeCanvas();
+                    createTables();
+                    animateCanvas();
+                };
+
+                const resizeCanvas = () => {
+                    const rect = canvas.getBoundingClientRect();
+                    canvas.width = rect.width;
+                    canvas.height = rect.height;
+                };
+
+                const createTables = () => {
+                    tables = [];
+                    const tableCount = 6;
+                    for (let i = 0; i < tableCount; i++) {
+                        tables.push({
+                            x: (canvas.width / 4) + Math.random() * (canvas.width / 2),
+                            y: (canvas.height / 4) + Math.random() * (canvas.height / 2),
+                            radius: 18,
+                            pulse: Math.random() * Math.PI,
+                            speed: 0.02 + Math.random() * 0.02
+                        });
+                    }
+                };
+
+                const animateCanvas = () => {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    tables.forEach(t => {
+                        t.pulse += t.speed;
+                        const dynamicRad = t.radius + Math.sin(t.pulse) * 3;
+
+                        if (isMouseOver) {
+                            const dx = mouseX - t.x;
+                            const dy = mouseY - t.y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < 120) {
+                                ctx.beginPath();
+                                ctx.strokeStyle = `${currentTheme.value.bgControl === 'bg-amber-600' ? '#f59e0b' : '#ef4444'}60`;
+                                ctx.lineWidth = 0.8;
+                                ctx.moveTo(t.x, t.y);
+                                ctx.lineTo(mouseX, mouseY);
+                                ctx.stroke();
+                            }
+                        }
+
+                        ctx.beginPath();
+                        ctx.arc(t.x, t.y, dynamicRad, 0, Math.PI * 2);
+                        ctx.fillStyle = currentTheme.value.bgControl === 'bg-amber-600' ? '#f59e0b' : '#ef4444';
+                        ctx.fill();
+
+                        ctx.beginPath();
+                        ctx.arc(t.x, t.y, dynamicRad * 0.3, 0, Math.PI * 2);
+                        ctx.fillStyle = '#ffffff';
+                        ctx.fill();
+
+                        const seatCount = 8;
+                        for (let s = 0; s < seatCount; s++) {
+                            const angle = (s * Math.PI * 2) / seatCount;
+                            const seatX = t.x + Math.cos(angle) * (dynamicRad + 12);
+                            const seatY = t.y + Math.sin(angle) * (dynamicRad + 12);
+                            ctx.beginPath();
+                            ctx.arc(seatX, seatY, 2.5, 0, Math.PI * 2);
+                            ctx.fillStyle = 'rgba(255,255,255,0.7)';
+                            ctx.fill();
+                        }
+                    });
+
+                    requestAnimationFrame(animateCanvas);
+                };
+
+                const updateCanvasInteract = (e) => {
+                    const rect = canvas.getBoundingClientRect();
+                    mouseX = e.clientX - rect.left;
+                    mouseY = e.clientY - rect.top;
+                    isMouseOver = true;
+                };
+
+                const resetCanvasInteract = () => {
+                    isMouseOver = false;
+                };
+
+                let timeInterval;
+                onMounted(() => {
+                    updateKigaliTime();
+                    timeInterval = setInterval(updateKigaliTime, 1000);
+                    initCanvas();
+                    window.addEventListener('resize', () => {
+                        resizeCanvas();
+                        createTables();
+                    });
+                });
+
+                onUnmounted(() => {
+                    clearInterval(timeInterval);
+                    window.removeEventListener('resize', resizeCanvas);
+                });
+
+                return {
+                    kigaliTime,
+                    toasts,
+                    currentThemeKey,
+                    currentTheme,
+                    themes,
+                    changeTheme,
+                    specPills,
+                    selectedSpec,
+                    toggleSpecFilter,
+                    galleryCategories,
+                    activeGalleryCat,
+                    galleryItems,
+                    filteredGallery,
+                    lightboxOpen,
+                    activeLightboxItem,
+                    openLightbox,
+                    closeLightbox,
+                    chooseLightboxSetup,
+                    packages,
+                    projects,
+                    filteredProjects,
+                    activeProjectIndex,
+                    activeProject,
+                    nextProject,
+                    prevProject,
+                    contactModalOpen,
+                    formSubmitted,
+                    formSubmitting,
+                    formData,
+                    inquiries,
+                    adminModalOpen,
+                    adminDashboardOpen,
+                    isAdminLoggedIn,
+                    adminError,
+                    activeAdminTab,
+                    adminCredentials,
+                    estimatedTotalRevenue,
+                    openContactModal,
+                    closeContactModal,
+                    selectPackage,
+                    submitForm,
+                    resetForm,
+                    submitInlineForm,
+                    resetInlineForm,
+                    inlineSubmitted,
+                    inlineSubmitting,
+                    inlineData,
+                    submitAdminLogin,
+                    logoutAdmin,
+                    openAdminDashboard,
+                    updateLeadStatus,
+                    updateCanvasInteract,
+                    resetCanvasInteract
+                };
             }
-        }
-
-        // Intersection Observer for Reveal
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        function triggerLove() {
-            document.getElementById('love-overlay').classList.remove('hidden');
-            document.getElementById('love-overlay').classList.add('flex');
-        }
-
-        function closeOverlay() {
-            document.getElementById('love-overlay').classList.add('hidden');
-        }
-
-        window.onload = () => {
-            createPetals();
-            // Trigger first section
-            setTimeout(() => {
-                document.querySelector('section:first-of-type .reveal').classList.add('active');
-            }, 300);
-        };
+        }).mount('#app');
     </script>
 </body>
 </html>
